@@ -25,3 +25,18 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+a:link,
+a:visited {
+  background-color: rgba(0, 0, 255, 0.3);
+  color: white;
+  padding: 20px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* styles for Nav.module.css or your CSS file */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+}

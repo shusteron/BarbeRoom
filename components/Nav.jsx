@@ -15,8 +15,9 @@ const Nav = () => {
         <Image
           src="/images/Logo.svg" 
           alt='BarbeRoom Logo' // shown incase the photo doesn't display
-          width={30}
-          height={30}
+          width={50}
+          height={50}
+          className='rounded'
         /> 
         <p className='logo_text'>BarbeRoom</p>
       </Link>

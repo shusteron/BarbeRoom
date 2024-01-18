@@ -1,8 +1,12 @@
-import React from 'react'
+import '@styles/globals.css'
+import ClientNav from '@components/ClientNav'
 
 const page = () => {
   return (
-    <div>what needs to be: signup and login for clients</div>
+    <div>
+      {/* signup/login code before redirect it to the client navbar */}
+      <ClientNav></ClientNav>
+    </div>
   )
 }
 

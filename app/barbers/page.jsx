@@ -1,8 +1,11 @@
-import React from 'react'
+import BarberNav from "@components/BarberNav"
 
 const page = () => {
   return (
-    <div>what needs to be: signup and login for barbers</div>
+    <div>
+      {/* signup/login code before redirect it to the barber navbar */}
+      <BarberNav></BarberNav>
+    </div>
   )
 }
 

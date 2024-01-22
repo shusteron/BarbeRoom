@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-// # -------------------------------------- #
-// # CSS global stylesheet, allowing us to  #
-// # define styles that apply universally   #
-// # across your application.               #
-// # -------------------------------------- #
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -51,3 +45,10 @@ a:visited {
 .navMargin {
   marginright: "10px";
 } */
+
+/* Styles for center elements */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

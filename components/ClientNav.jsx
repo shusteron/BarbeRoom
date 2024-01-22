@@ -10,25 +10,25 @@ import '@styles/globals.css'
 
 const ClientNav = () => {
   return (
-    <nav>
+    
       <ul style={{ listStyleType: 'none', padding: 1, display: 'flex', justifyContent: 'center'}}>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/client/dashboard">ביטול תור</Link>
+          <Link href="/clients/dashboard">ביטול תור</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/client/appointments">היסטוריית תורים</Link>
+          <Link href="/clients/appointments">היסטוריית תורים</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/client/appointments">תורים עתידיים</Link>
+          <Link href="/clients/appointments">תורים עתידיים</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/client/appointments">קביעת תור</Link>
+          <Link href="/clients/booking">קביעת תור</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/client/appointments">על המספרה</Link>
+          <Link href="/clients/appointments">על המספרה</Link>
         </li>
       </ul>
-    </nav>
+    
   )
 }
 

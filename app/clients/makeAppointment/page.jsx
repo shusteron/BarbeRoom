@@ -1,12 +1,9 @@
 "use client"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
-import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 import '@styles/globals.css'
 
-import React from 'react'
 
-const booking = () => {
+const makeAppointmentPage = () => {
 
   // Ensuring that minimum date is set to the current date.
   const getCurrentDate = () => {
@@ -31,4 +28,4 @@ const booking = () => {
   )
 }
 
-export default booking
+export default makeAppointmentPage

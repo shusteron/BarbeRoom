@@ -10,10 +10,10 @@ export default function Home() {
         </Image>
       </div>
       <div className='text-center' >
-        <Link href="/Clients">לקוחות</Link> 
+        <Link href="/clients">לקוחות</Link> 
       </div>
       <div className='text-center'>
-        <Link href="/Barbers">ספרים</Link>
+        <Link href="/barbers">ספרים</Link>
       </div>
     </main>
   )

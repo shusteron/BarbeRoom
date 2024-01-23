@@ -20,6 +20,8 @@
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",

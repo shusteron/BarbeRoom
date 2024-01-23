@@ -22,9 +22,9 @@ const ClientNav = () => {
           <Link href="/clients/appointments">תורים עתידיים</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/booking">קביעת תור</Link>
+          <Link href="/Clients/makeAppointment">קביעת תור</Link>
         </li>
-        <li style={{ marginRight: '2px' }}>
+        <li style={{ marginRight: '2px' }}> 
           <Link href="/clients/appointments">על המספרה</Link>
         </li>
       </ul>

@@ -1,7 +1,7 @@
 import '@styles/globals.css'
 import ClientNav from '@components/ClientNav'
 
-const clientsPage = () => {
+const page = () => {
   return (
     <div>
       {/* signup/login code before redirect it to the client navbar */}
@@ -10,4 +10,4 @@ const clientsPage = () => {
   )
 }
 
-export default clientsPage
+export default page

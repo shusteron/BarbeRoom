@@ -1,4 +1,5 @@
-import BarberNav from "@components/BarberNav"
+import BarberNav from "../../components/BarberNav"
+// import BarberNav from "../../components/BarberNav"
 
 const page = () => {
   return (

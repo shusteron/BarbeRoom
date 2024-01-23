@@ -26,7 +26,7 @@ export default function LoginPage() {
             console.log("Login success", response.data);
             toast.success("Login success");
             router.push("/barbers/page");
-        } catch (error:any) {
+        } catch (error) {
             console.log("Login failed", error.message);
             toast.error(error.message);
         } finally{

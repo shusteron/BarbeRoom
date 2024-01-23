@@ -26,7 +26,7 @@ export default function SignupPage() {
             console.log("Signup success", response.data);
             router.push("/app/barbers/page.jsx");
             
-        } catch (error:any) {
+        } catch (error) {
             console.log("Signup failed", error.message);
             
             toast.error(error.message);

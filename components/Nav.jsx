@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Link from "next/link"
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from "next-auth/react"
-import '@styles/globals.css'
+// import '@styles/globals.css'
+import "../styles/globals.css"
 import ClientNav from './ClientNav'
 import BarberNav from './BarberNav'
 

@@ -16,7 +16,7 @@ const BarberNav = () => {
           <Link href="/barbers/workSchedule">סידור עבודה</Link>
         </li>
         <li>
-          <Link href="/barbers/workSchedule">שיבוץ ימי עבודה</Link>
+          <Link href="/barbers/shiftOrganizer">שיבוץ ימי עבודה</Link>
         </li>
       </ul>
     </nav>

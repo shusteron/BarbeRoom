@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from "next/link"
 import Background from '../public/images/Background.jpg'
+import loginBarber from "../app/login/logInBarber"
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
       </div>
       <div className='text-center'>
         <Link href="/barbers">ספרים</Link>
+      </div>
+      <div className='text-center'>
+        <Link href="login/logInBarber">login</Link>
       </div>
     </main>
   )

@@ -14,19 +14,19 @@ const ClientNav = () => {
     
       <ul style={{ listStyleType: 'none', padding: 1, display: 'flex', justifyContent: 'center'}}>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/cancelAppointment">ביטול תור</Link>
+          <Link href="/clients/dashboard">ביטול תור</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/history">היסטוריית תורים</Link>
+          <Link href="/clients/appointments">היסטוריית תורים</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/futureAppointments">תורים עתידיים</Link>
+          <Link href="/clients/appointments">תורים עתידיים</Link>
         </li>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/makeAppointment">קביעת תור</Link>
+          <Link href="/clients/booking">קביעת תור</Link>
         </li>
-        <li style={{ marginRight: '2px' }}> 
-          <Link href="/clients/barbershop">על המספרה</Link>
+        <li style={{ marginRight: '2px' }}>
+          <Link href="/clients/appointments">על המספרה</Link>
         </li>
       </ul>
     

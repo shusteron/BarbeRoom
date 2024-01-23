@@ -14,10 +14,10 @@ const BarberNav = () => {
     <nav>
       <ul style={{ listStyleType: 'none', padding: 1, display: 'flex', justifyContent: 'center'}}>
         <li style={{ marginRight: '2px' }}>
-          <Link href="/barbers/workSchedule">סידור עבודה</Link>
+          <Link href="/barber/dashboard">סידור עבודה</Link>
         </li>
         <li>
-          <Link href="/barbers/shiftOrganizer">שיבוץ ימי עבודה</Link>
+          <Link href="/barber/appointments">שיבוץ ימי עבודה</Link>
         </li>
       </ul>
     </nav>

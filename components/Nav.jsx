@@ -17,7 +17,7 @@ const Nav = () => {
 
     return user.barber ? <BarberNav/>  : <ClientNav />
   }
- 
+
   return (
     <nav className='.navbar'>
       <Link href='/' className='flex gap-2 flex-center'>

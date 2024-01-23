@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from "next/link"
 import Background from '../public/images/Background.jpg'
-import loginBarber from "../app/login/logInBarber"
+import loginBarber from "./barbers/login/page"
 
 export default function Home() {
   return (
@@ -11,13 +11,10 @@ export default function Home() {
         </Image>
       </div>
       <div className='text-center' >
-        <Link href="/clients">לקוחות</Link> 
+        <Link href="/clients/login">לקוחות</Link> 
       </div>
       <div className='text-center'>
-        <Link href="/barbers">ספרים</Link>
-      </div>
-      <div className='text-center'>
-        <Link href="login/logInBarber">login</Link>
+        <Link href="/barbers/login">ספרים</Link>
       </div>
     </main>
   )

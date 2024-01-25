@@ -21,13 +21,42 @@ body {
 }
 
 a:link,
-a:visited {
+a:visited,
+button {
   background-color: rgba(0, 0, 255, 0.3);
   color: white;
   padding: 20px 80px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color change */
+}
+
+a:hover,
+button:hover {
+  background-color: rgba(0, 0, 255, 0.6); /* New color on hover */
+  color: yellow; /* New color on hover */
+}
+
+button[disabled] {
+  background-color: #ccc; /* Disabled button color */
+  color: #666; /* Text color for disabled button */
+  cursor: not-allowed; /* Change cursor for disabled button */
+}
+
+button:not([disabled]) {
+  background-color: rgba(0, 0, 255, 0.3);
+  color: white;
+  padding: 10px 20px; /* Adjusted padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color change */
+}
+
+button:not([disabled]):hover {
+  background-color: rgba(0, 0, 255, 0.6); /* New color on hover */
+  color: yellow; /* New color on hover */
 }
 
 /* styles for Nav.module.css or your CSS file */

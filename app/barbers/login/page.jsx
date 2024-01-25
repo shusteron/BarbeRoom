@@ -22,7 +22,7 @@ export default function LoginPage() {
     const onLogin = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/login/loginBarber", barber);
+            const response = await axios.post("/api/users/barbers/login", barber);
             console.log("Login success", response.data);
             toast.success("Login success");
             router.push("/barbers/page");
@@ -67,6 +67,7 @@ export default function LoginPage() {
             />
             <button
             onClick={onLogin}
+            disabled={buttonDisabled}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
             <Link href="../barbers/signUp" >Visit Signup page</Link>
         </div>

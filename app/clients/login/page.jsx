@@ -6,12 +6,9 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 
-
-
-
 export default function LoginPage() {
     const router = useRouter();
-    const [user, setUser] = React.useState({
+    const [client, setUser] = React.useState({
         email: "",
         password: "",
        
@@ -23,10 +20,11 @@ export default function LoginPage() {
     const onLogin = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/login", user);
+            const response = await axios.post("/api/users/clients/login", client);
             console.log("Login success", response.data);
             toast.success("Login success");
-            router.push("/clients/page");
+            localStorage.setItem("userType", "client");
+            router.push("/clients");
         } catch (error) {
             console.log("Login failed", error.message);
             toast.error(error.message);
@@ -36,12 +34,12 @@ export default function LoginPage() {
     }
 
     useEffect(() => {
-        if(user.email.length > 0 && user.password.length > 0) {
+        if(client.email.length > 0 && client.password.length > 0) {
             setButtonDisabled(false);
         } else{
             setButtonDisabled(true);
         }
-    }, [user]);
+    }, [client]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -53,8 +51,8 @@ export default function LoginPage() {
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="email"
             type="text"
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
+            value={client.email}
+            onChange={(e) => setUser({...client, email: e.target.value})}
             placeholder="email"
             />
         <label htmlFor="password">password</label>
@@ -62,8 +60,8 @@ export default function LoginPage() {
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="password"
             type="password"
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
+            value={client.password}
+            onChange={(e) => setUser({...client, password: e.target.value})}
             placeholder="password"
             />
             <button

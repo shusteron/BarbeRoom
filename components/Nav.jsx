@@ -4,23 +4,56 @@ import Image from 'next/image'
 import Link from "next/link"
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from "next-auth/react"
-// import '@styles/globals.css'
 import "../styles/globals.css"
 import ClientNav from './ClientNav'
 import BarberNav from './BarberNav'
 
+import { deleteCookie, getCookie } from "../app/utils/cookies";
+import {useRouter} from "next/navigation";
+import {calculateUserType} from "../app/utils/calculateUserType";
+import { usePathname } from 'next/navigation'
+import Cookies from "js-cookie"
 
 
 const Nav = () => {
-  const userNavBar = (user) => {
-    if(!user) return <></>
+  const pathname = usePathname();
+  const userType = calculateUserType(pathname);
+  console.log(userType);
 
-    return user.barber ? <BarberNav/>  : <ClientNav />
+
+  const router = useRouter();
+  // Get the token from cookies
+  const token = Cookies.get("token");
+  
+  //get user type from cookie
+  const userNavBar = () => {
+    console.log(userType)
+    if(!userType || !getCookie("token")) return <></>
+    return userType === "barber" ? <BarberNav/>  : <ClientNav />
+    
   }
+
+  const homePage = () => {
+
+    if(!userType || !getCookie("token")) return '/'
+    return userType === "barber"? "/barbers"  : "/clients"
+    
+  }
+
+  // Add logout function
+  const logout = () => {
+    // Clear all items from local storage
+    localStorage.clear();
+    deleteCookie("token");
+    // // Delete the 'userType' cookie
+    document.cookie = 'userType=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    router.push("/");
+  }
+
 
   return (
     <nav className='.navbar'>
-      <Link href='/' className='flex gap-2 flex-center'>
+      <Link href={homePage()} className='flex gap-2 flex-center'>
         <Image
           src="/images/Logo.svg" 
           alt='BarbeRoom Logo' // shown incase the photo doesn't display
@@ -31,6 +64,11 @@ const Nav = () => {
         <p className='logo_text'>BarbeRoom</p>
       </Link>
       {userNavBar()}
+
+      {/* Displaying the logout button or not depands if there is a user signed in */}
+      {token && (<button className='btn btn-outline-danger btn-top-right-corner' onClick={() => logout()}>התנתק</button>)}
+        
+      
     </nav>
   )
 }

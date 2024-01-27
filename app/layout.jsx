@@ -5,9 +5,6 @@ import "../styles/globals.css"
 import Nav from '../components/Nav'
 
 
-
-
-
 const inter = Inter({ subsets: ['latin'] })
 
  

@@ -15,10 +15,10 @@ export async function POST(request ){
         console.log(reqBody);
 
         //check if user already exists
-        const Barber = await Barbers.findOne({email})
+        const barber = await Barbers.findOne({email})
 
-        if(Barber){
-            return NextResponse.json({error: "User already exists"}, {status: 400})
+        if(barber){
+            return NextResponse.json({error: "email already exists"}, {status: 400})
         }
 
         //hash password
@@ -44,3 +44,6 @@ export async function POST(request ){
 
     }
 }
+
+
+

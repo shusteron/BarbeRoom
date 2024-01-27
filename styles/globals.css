@@ -81,3 +81,12 @@ button:not([disabled]):hover {
   justify-content: center;
   align-items: center;
 }
+
+.btn-top-right-corner {
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: rgba(238, 17, 17, 0.6); /* New color on hover */
+  color: rgb(252, 251, 251); /* New color on hover */
+  
+}

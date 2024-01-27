@@ -4,92 +4,146 @@ import React, { useEffect } from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 
 
-
-export default function SignupPage() {
+const SignupPage = () => {
     const router = useRouter();
-    const [client, setClient] = React.useState({
+    const [loading, setLoading] = React.useState(false);
+  
+    const formik = useFormik({
+      initialValues: {
         name: "",
         lastName: "",
-        email: "",
         phoneNumber: "",
+        email: "",
         password: "",
-    })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
-
-    const onSignup = async () => {
+      },
+      validationSchema: Yup.object({
+        name: Yup.string().required("Name is required"),
+        lastName: Yup.string().required("Last Name is required"),
+        phoneNumber: Yup.string().required("Phone Number is required"),
+        email: Yup.string().email("Invalid email address").required("Email is required").matches(/@/, 'Email must contain "@"'),
+        password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+      }),
+      onSubmit: async (values) => {
         try {
-            setLoading(true);
-            const response = await axios.post("/api/users/signup/signUpClient", client);
-            console.log("Signup success", response.data);
-            router.push("../app/clients");//for whom?
-            
+          setLoading(true);
+          const response = await axios.post("/api/users/clients/signup", values);
+          console.log("Signup success", response.data);
+          router.push("/clients/login");
+          
+  
         } catch (error) {
-            console.log("Signup failed", error.message);
-            
+          console.log(error);
+          console.log(error.response);
+          toast.error("signup failed");
+      
+          if (error.response && error.response.data && error.response.data.error) {
+            const errorMessage = error.response.data.error;
+            console.log(errorMessage);
+            // Check if the error message indicates that the email already exists
+            if (errorMessage.includes("email already exists")) {
+              toast.error("Email already exists. Please use a different email.");
+            } else {
+              // Handle other error messages
+              toast.error(errorMessage);
+            }
+          } else {
+            // Handle other types of errors
             toast.error(error.message);
-        }finally {
-            setLoading(false);
+          }
+        } finally {
+          setLoading(false);
         }
-    }
-
-    useEffect(() => {
-        if(client.email.length > 0 && client.password.length > 0 && client.name.length > 0&&client.lastName.length > 0) {
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
-    }, [client]);
-
-
+      },
+      
+      
+    });
+  
     return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <h1>{loading ? "Processing" : "Signup"}</h1>
         <hr />
-        <label htmlFor="username">name</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="name"
-            type="text"
-            value={client.name}
-            onChange={(e) => setClient({...client, name: e.target.value})}
-            placeholder="name"
+  
+        <form onSubmit={formik.handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              {...formik.getFieldProps("name")}
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
             />
-        <label htmlFor="username">last name</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="lastName"
-            type="text"
-            value={client.lastName}
-            onChange={(e) => setClient({...client, lastName: e.target.value})}
-            placeholder="lastName"
-            />    
-        <label htmlFor="email">email</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="email"
-            type="text"
-            value={client.email}
-            onChange={(e) => setClient({...client, email: e.target.value})}
-            placeholder="email"
+            {formik.touched.name && formik.errors.name && <p className="text-red-500">{formik.errors.name}</p>}
+          </div>
+  
+          <div className="mb-4">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              {...formik.getFieldProps("lastName")}
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
             />
-        <label htmlFor="password">password</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="password"
-            type="password"
-            value={client.password}
-            onChange={(e) => setClient({...client, password: e.target.value})}
-            placeholder="password"
-            />
-            <button
-            onClick={onSignup}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
-            <Link href="../clients/login">Visit login page</Link>
-        </div>
-    )
+            {formik.touched.lastName && formik.errors.lastName && (
+              <p className="text-red-500">{formik.errors.lastName}</p>
+            )}
+          </div>
 
-}
+          <div className="mb-4">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              id="phoneNumber"
+              type="tel"
+              {...formik.getFieldProps("phoneNumber")}
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+            />
+            {formik.touched.phoneNumber && formik.errors.phoneNumber && <p className="text-red-500">{formik.errors.phoneNumber}</p>}
+          </div>
+  
+          <div className="mb-4">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="text"
+              {...formik.getFieldProps("email")}
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+            />
+            {formik.touched.email && formik.errors.email && <p className="text-red-500">{formik.errors.email}</p>}
+          </div>
+  
+          <div className="mb-4">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              {...formik.getFieldProps("password")}
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+            />
+            {formik.touched.password && formik.errors.password && (
+              <p className="text-red-500">{formik.errors.password}</p>
+            )}
+          </div>
+  
+          <div className="flex items-center justify-center">
+              <button
+                type="submit"
+                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+                disabled={formik.isSubmitting}
+              >
+                {formik.isSubmitting ? "Processing" : "Signup"}
+              </button>
+            </div>
+          </form>
+  
+        <Link href="../barbers/login">Visit login page</Link>
+      </div>
+    );
+  };
+  
+  export default SignupPage;
+  
+  

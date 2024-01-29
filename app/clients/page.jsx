@@ -1,9 +1,9 @@
 import "../../styles/globals.css"
+
+
 const page = () => {
   return (
-    <div>
-      
-    </div>
+    <div className="center">BarbeRoom</div>
   )
 }
 

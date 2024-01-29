@@ -29,5 +29,5 @@ const DaySelector = () => {
         </div>
     );
 }
-
+ 
 export default DaySelector

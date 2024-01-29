@@ -22,4 +22,4 @@ const barberSchema = new mongoose.Schema({
 
 const Barbers = mongoose.models.barbers || mongoose.model("barbers", barberSchema);
 
-export default Barbers;
+export default Barbers; 

@@ -1,8 +1,9 @@
 "use client"
 import Link from "next/link"
-import '@styles/globals.css'
+// import '@styles/globals.css'
+import "../../../styles/globals.css"
 
-
+ 
 const makeAppointmentPage = () => {
 
   // Ensuring that minimum date is set to the current date.

@@ -29,11 +29,13 @@ const SignupPage = () => {
         setLoading(true);
         const response = await axios.post("/api/users/barbers/signup", values);
         console.log("Signup success", response.data);
+        // Show a success toast message
+        toast.success("Signup successful!");
         router.push("/barbers/login");
         
 
       } catch (error) {
-        console.log(error);
+        console.log("Error:",error);
         console.log(error.response);
         toast.error("signup failed");
     

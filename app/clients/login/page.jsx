@@ -28,6 +28,15 @@ export default function LoginPage() {
         } catch (error) {
             console.log("Login failed", error.message);
             toast.error(error.message);
+
+            // Handle incorrect email or password fields.
+            if (error.response && error.response.status === 400) {
+                // Unauthorized - Incorrect email or password
+                toast.error("Incorrect email or password. Please try again.");
+            } else {
+                // Other error cases
+                toast.error("Login failed. Please try again later.");
+            }
         } finally{
         setLoading(false);
         }

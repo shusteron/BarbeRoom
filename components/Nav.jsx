@@ -40,7 +40,7 @@ const Nav = () => {
     
   }
 
-  // Add logout function
+  
   const logout = () => {
     // Clear all items from local storage
     localStorage.clear();
@@ -66,7 +66,7 @@ const Nav = () => {
       {userNavBar()}
 
       {/* Displaying the logout button or not depands if there is a user signed in */}
-      {token && (<button className='btn btn-outline-danger btn-top-right-corner' onClick={() => logout()}>התנתק</button>)}
+      {token && (<button className='bg-red-500 text-white px-4 py-2 rounded-md fixed right-0 top-0 mt-4 mr-4' onClick={() => logout()}>התנתק</button>)}
         
       
     </nav>

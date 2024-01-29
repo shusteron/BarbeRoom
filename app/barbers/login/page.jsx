@@ -18,19 +18,27 @@ export default function LoginPage() {
 
     const onLogin = async () => {
         try {
-            setLoading(true);
-            const response = await axios.post("/api/users/barbers/login", barber);
-            console.log("Login success", response.data);
-            toast.success("Login success");
-            localStorage.setItem("userType", "barber");
-            router.push("/barbers");
+          setLoading(true);
+          const response = await axios.post("/api/users/barbers/login", barber);
+          console.log("Login success", response.data);
+          toast.success("Login success");
+          localStorage.setItem("userType", "barber");
+          router.push("/barbers");
         } catch (error) {
             console.log("Login failed", error.message);
-            toast.error(error.message);
-        } finally{
-        setLoading(false);
+            setLoading(false); // Make sure to set loading to false here
+        
+            // Handle incorrect email or password fields.
+            if (error.response && error.response.status === 400) {
+                // Unauthorized - Incorrect email or password
+                toast.error("Incorrect email or password. Please try again.");
+            } else {
+                // Other error cases
+                toast.error("Login failed. Please try again later.");
+            }
         }
-    }
+    };
+      
 
     useEffect(() => {
         if(barber.email.length > 0 && barber.password.length > 0) {

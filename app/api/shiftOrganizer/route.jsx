@@ -1,13 +1,13 @@
 // pages/api/shifts.js
 
-import Connect from '../../../dbConfig/dbConfig';
+import {connect} from '../../../dbConfig/dbConfig';
 import Shift from '../../../models/shiftModel';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       // Connect to MongoDB
-      await Connect();
+      await connect();
 
       const { barberId, Date, shift} = req.body;
 

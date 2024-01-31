@@ -1,15 +1,18 @@
-// import {connect} from "../../../dbConfig/dbConfig"
+import {connect} from "../../../dbConfig/dbConfig"
 
-import dbConnect from "../../../dbConfig/dbConnect";
+// import dbConnect from "../../../dbConfig/dbConnect";
 
 import Barbers from "../../../models/barberModel"
+import { NextRequest, NextResponse } from "next/server";
 
 
 // Handler function to handle incoming HTTP requests
-export default async function handler(request, response) {
+export async function GET(request, response) 
+{   
     console.log("Request method:", request.method);
+
     // Establishing a connection to the database
-    await dbConnect();
+    await connect();
 
     if (request.method === 'GET') 
     {
@@ -30,7 +33,7 @@ export default async function handler(request, response) {
     
     else 
     {
-      // Handling other HTTP methods which are not relatable(POST, PUT, DELETE)  
+      // Handling other HTTP methods which are not relatable(POST, PUT, DELETE..)  
       response.status(405).json({ error: 'Method Not Allowed' });
     }
-  }
+  } 

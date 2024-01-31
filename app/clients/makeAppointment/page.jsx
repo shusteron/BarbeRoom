@@ -16,4 +16,4 @@ const makeAppointmentsPage = () => {
   )
 }
 
-export default makeAppointmentsPage
+export default makeAppointmentsPage 

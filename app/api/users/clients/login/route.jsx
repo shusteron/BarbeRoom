@@ -7,7 +7,7 @@ import Clients from "../../../../../models/clientModel";
 connect();
 
 export async function POST (request) {
-    try {
+    try { 
         const reqBody = await request.json();
         const { email, password } = reqBody;
         console.log(reqBody);

@@ -9,12 +9,13 @@ import React from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import barberModel from '../../../models/barberModel'
+//import barberModel from '../../../models/barberModel'
 import getCookie from '../../utils/cookies'
 
 
 
 const ShiftOrganizer = () => {
+  const [loading, setLoading] = useState(false);// Declare loading state
   // State variable to hold selected date and time
   const [selectedDateTime, setSelectedDateTime] = useState({ date: '', shift: '' });
 
@@ -41,7 +42,7 @@ const ShiftOrganizer = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/barbers/shiftOrganizer", Shift);
+      const response = await axios.post("/api/users/barbers/shiftOrganizer", selectedDateTime);
       console.log("Login success", response.data);
       toast.success("Login success");
   } catch (error) {
@@ -50,7 +51,7 @@ const ShiftOrganizer = () => {
 
       // Handle incorrect email or password fields.
       if (error.response && error.response.status === 400) {
-          // Unauthorized - Incorrect email or password
+          // Unauthorized - Incorrect email or password    
           toast.error("Incorrect email or password. Please try again.");
       } else {
           // Other error cases
@@ -59,6 +60,7 @@ const ShiftOrganizer = () => {
   }
    finally{
   setLoading(false);
+  setSelectedDateTime({ date: '', shift: '' }); // Reset selectedDateTime after sending data
   }
   };
 

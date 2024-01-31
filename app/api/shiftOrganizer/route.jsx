@@ -18,10 +18,10 @@ export default async function handler(req, res) {
      // }
 
       // Check if there is already a record for the employee on the same day and shift
-    //const existingRecord = await Shift.findOne({ barberId, Date, shift });
-     // if (existingRecord) {
-     //   return res.status(400).json({ error: 'Employee already has a shift record for this day and time' });
-     // }
+    const existingRecord = await Shift.findOne({ barberId, Date, shift });
+     if (existingRecord) {
+       return res.status(400).json({ error: 'Employee already has a shift record for this day and time' });
+     }
 
       // Create a new Shift document and save it to the database
       const newShift = new Shift({
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         shift,
       });
 
-      //await newShift.save();
+      await newShift.save();
 
       console.log('Shift record saved:', newShift);
 

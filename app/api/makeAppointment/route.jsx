@@ -22,7 +22,7 @@ export async function GET(request, response)
         const barbers = await Barbers.find({});
 
         // Sending a successful response with the list of barbers
-        response.status(200).json(barbers);
+        // response.status(200).json(barbers); // -------------------------> this is the error line
       } 
        
       catch (error) 

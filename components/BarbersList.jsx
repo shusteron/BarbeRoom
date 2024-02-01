@@ -4,6 +4,8 @@ import Link from "next/link"
 import "../styles/globals.css"
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
+import { NextRequest, NextResponse } from "next/server";
+import {useRouter} from "next/navigation";
 
 
 const BarbersList = () => {
@@ -11,22 +13,25 @@ const BarbersList = () => {
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
 
   useEffect(() => {
-    const fetchBarbers = async () => {
       try 
       {
-        const response = await axios.get("/api/makeAppointment");
-        setBarbers(response.data);
+        fetch("/api/makeAppointment")
+        .then( (response) => response.json() )
+        .then( (data) => setBarbers(data));
       } 
 
       catch (error) 
       {
         console.error("Could not fetch list of barbers", error);
       }
-    };
 
-    fetchBarbers(); 
   }, []);
 
+  if (barbers.length === 0) 
+  {
+    // Data is still being fetched or no barbers available
+    return <div>Loading...</div>;
+  }
 
   return ( 
     <div>

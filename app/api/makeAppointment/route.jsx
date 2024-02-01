@@ -1,13 +1,10 @@
 import {connect} from "../../../dbConfig/dbConfig"
-
-// import dbConnect from "../../../dbConfig/dbConnect";
-
 import Barbers from "../../../models/barberModel"
 import { NextRequest, NextResponse } from "next/server";
 
 
 // Handler function to handle incoming HTTP requests
-export async function GET(request, response) 
+export async function GET(request) 
 {   
     console.log("Request method:", request.method);
 
@@ -22,18 +19,18 @@ export async function GET(request, response)
         const barbers = await Barbers.find({});
 
         // Sending a successful response with the list of barbers
-        // response.status(200).json(barbers); // -------------------------> this is the error line
+        return NextResponse.json(barbers);
       } 
        
       catch (error) 
       {
-        response.status(500).json({ error: 'Internal Server Error' });
+        return NextResponse.json({ error: 'Internal Server Error' });
       }
     } 
     
     else 
     {
       // Handling other HTTP methods which are not relatable(POST, PUT, DELETE..)  
-      response.status(405).json({ error: 'Method Not Allowed' });
+      return NextResponse.json({ error: 'Method Not Allowed' });
     }
   } 

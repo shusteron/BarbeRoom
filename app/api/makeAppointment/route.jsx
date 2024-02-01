@@ -9,7 +9,7 @@ export async function GET(request)
     console.log("Request method:", request.method);
 
     // Establishing a connection to the database
-    await connect();
+    await connect(); 
 
     if (request.method === 'GET') 
     {

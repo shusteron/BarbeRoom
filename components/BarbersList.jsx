@@ -8,9 +8,13 @@ import { NextRequest, NextResponse } from "next/server";
 import {useRouter} from "next/navigation";
 
 
-const BarbersList = () => {
+const BarbersList = ({ onSelectBarber }) => {
 
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
+
+  const handleBarberChoose = (event) => {
+    
+  };
 
   useEffect(() => {
       try 
@@ -30,17 +34,19 @@ const BarbersList = () => {
   if (barbers.length === 0) 
   {
     // Data is still being fetched or no barbers available
-    return <div>Loading...</div>;
+    return <div>רשימת ספרים לא זמינה</div>;
   }
 
   return ( 
     <div>
-      <h1 className="center">בחר ספר\ספרית</h1>
+      <h1 className="center">בחר\י ספר\ספרית</h1>
+      <div className="center">
       <ul>
         {barbers.map(barber => (
           <li key={barber.id}>{barber.name} {barber.lastName}</li>
         ))}
       </ul>
+      </div>
     </div>
   )
 }

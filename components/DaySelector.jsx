@@ -5,29 +5,29 @@ import React, { useState, useEffect } from "react";
 
 
 
-const DaySelector = () => {
+const DaySelector = ({ barberId, onSelectDay } ) => {
 
-    const [days, setDays] = useState([]);
+    const [days, setDays] = useState([]); // list of days - initially an empty list
 
     useEffect(() => {
-        // Fetch days for the selected barber from API or local data
-        // Example:
+
+        // Fetch days for the selected barber
         const fetchedDays = ['Monday', 'Tuesday', 'Wednesday'];
         setDays(fetchedDays);
-    }, [barberId]);
+    }, []);
 
     return (
         <div>
-        <h2>Select a Day:</h2>
-        <ul>
+          <h2>בחר\י יום</h2>
+          <ul>
             {days.map(day => (
-            <li key={day} onClick={() => onSelectDay(day)}>
+              <li key={day} onClick={() => onSelectDay(day)}>
                 {day}
-            </li>
+              </li>
             ))}
-        </ul>
+          </ul>
         </div>
-    );
+      );
 }
  
 export default DaySelector

@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 
 const shiftSchema = new mongoose.Schema({
-  barberId: { type: mongoose.Schema.Types.ObjectId, ref: 'Barber', required: true },
+  barberId: { type: mongoose.Schema.Types.ObjectId, ref: 'barbers', required: true },
   shiftDay: { Date, required: true },
   shiftTime: { type: String, required: true },
 });

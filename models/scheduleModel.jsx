@@ -11,13 +11,15 @@ const barberScheduleSchema = new mongoose.Schema({
     date: 
     {
         type: Date,
-        required: true
+        required: true 
     },
-    hour: {
+    hour: 
+    {
         type: String,
         required: true
     },
-    haircutType: {
+    haircutType: 
+    {
         type: String,
         required: true
     }

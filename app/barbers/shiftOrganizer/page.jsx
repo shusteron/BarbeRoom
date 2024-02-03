@@ -42,7 +42,7 @@ const ShiftOrganizer = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/barbers/shiftOrganizer", selectedDateTime);
+      const response = await axios.post("/api/shiftOrganizer", selectedDateTime);
       console.log("Login success", response.data);
       toast.success("Login success");
   } catch (error) {
@@ -88,7 +88,7 @@ const ShiftOrganizer = () => {
         <label htmlFor="date-picker">בחר תאריך</label>
         <input 
           type="date" 
-          name="trip-start" 
+          name="trip-start"  
           id="date-picker" 
           min={getCurrentDate()} 
           onChange={handleDateChange} 

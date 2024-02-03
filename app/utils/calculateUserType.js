@@ -13,3 +13,4 @@ export function calculateUserType(pathname) {
   // Return null when window is undefined or for unknown URLs
   return null;
 }
+ 

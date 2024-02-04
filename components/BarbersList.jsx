@@ -12,13 +12,13 @@ const BarbersList = ({ onSelectBarber }) => {
 
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
 
-  const router = useRouter();
-
   const handleBarberChoose = (barberId) => {
-    setSelectedBarber(barberId);
+    console.log("handleBarberChoose was called with id: " + barberId);
+    onSelectBarber(barberId);
   };
 
   useEffect(() => {
+    console.log("getting barbers");
       try 
       {
         fetch("/api/makeAppointment")
@@ -43,11 +43,12 @@ const BarbersList = ({ onSelectBarber }) => {
     <div>
       <h1 className="center">בחר\י ספר\ספרית</h1>
       <div className="center">
-      <ul>
+      <select id="barberSelector" name="barberSelector" onChange={(event) => handleBarberChoose(event.target.value)}>
+        <option value="">בחר\י ספר\ספרית</option>
         {barbers.map(barber => (
-          <li key={barber.id} onClick={() => handleBarberChoose(barber.id)}>{barber.name} {barber.lastName}</li>
+          <option key={barber.id} value={barber.id} >{barber.name} {barber.lastName}</option>
         ))}
-      </ul>
+      </select>
       </div>
 
     </div>

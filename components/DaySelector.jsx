@@ -18,7 +18,7 @@ const DaySelector = ({ barberId, onSelectDay } ) => {
           {
             fetch("/api/workSchedule?barberMail=${barberId}")
             .then( (response) => response.json() )
-            .then( (data) => setBarbers(data));
+            .then( (data) => setDays(data));
           } 
     
           catch (error) 

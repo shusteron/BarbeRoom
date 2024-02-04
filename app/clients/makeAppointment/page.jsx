@@ -20,10 +20,11 @@ const makeAppointmentsPage = () => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
+  const handleAppointment = () => {
 
-
-
-
+    // create appointment in MongoDB
+    console.log('Appointment created:', { selectedBarber, selectedDay, selectedHour, selectedHaircutType });
+  };
 
 
   return ( 
@@ -32,10 +33,10 @@ const makeAppointmentsPage = () => {
         <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000}>
         </Image>
       </div>
-      <BarbersList></BarbersList>
 
+      <div>
       <BarbersList onSelectBarber={setSelectedBarber} /> 
-      {/* {selectedBarber && (
+      {selectedBarber && (
         <>
           <DaySelector
             barberId={selectedBarber.id}
@@ -59,7 +60,22 @@ const makeAppointmentsPage = () => {
       )}
       {selectedHaircutType && (
         <button onClick={createAppointment}>Create Appointment</button>
-      )} */}
+      )}
+      </div>
+
+
+
+
+      
+
+      {/* <div>
+        <BarbersList onSelectBarber={setSelectedBarber} />
+        {selectedBarber && <DaySelector barberId={selectedBarber} onSelectDay={setSelectedDay} />}
+        {selectedDay && <HourSelector onSelectHour={setSelectedHour} day={day} />}
+        {selectedHour && <HaircutTypeSelector onSelectHaircutType={setSelectedHaircutType} />}
+        {selectedHaircutType && <button onClick={handleAppointment}>Confirm Appointment</button>}
+      </div> */}
+      
 
     </div>
   )

@@ -119,15 +119,15 @@ const RegisterShiftPage = () => {
             </label>
           </div> 
 
-        <div className="flex items-center justify-center">
-          <button
-            type="submit"
-            className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
-            disabled={formik.isSubmitting}
-          >
-            {formik.isSubmitting ? 'Processing' : 'Register Shift'}
-          </button>
-        </div>
+          <div className="flex items-center justify-center">
+            <button
+              type="submit"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+              disabled={formik.isSubmitting || (!formik.values.morningShift && !formik.values.eveningShift)}
+            >
+              {formik.isSubmitting ? 'Processing' : 'Register Shift'}
+            </button>
+          </div>
       </form>
       <div className='absolute -z-10 w-full'>
         <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />

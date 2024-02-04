@@ -15,13 +15,16 @@ barberMail:
       type: Date,
       required: true
   },
-  shiftTime: 
-  {
-      type: String,
-      required: true
+  morningShift: {
+    type: Boolean,
+    default: false,
+  },
+  eveningShift: {
+    type: Boolean,
+    default: false,
   }
 })
 
 const Shift = mongoose.models.shift || mongoose.model('shift', shiftSchema);
 
-export default Shift;  
+export default Shift;

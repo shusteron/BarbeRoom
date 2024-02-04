@@ -15,6 +15,15 @@ import getCookie from '../../utils/cookies'
 
 
 const ShiftOrganizer = () => {
+    const [email, setEmail] = useState(""); // State variable to hold the email input
+  
+    // Handler for email input change
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value); // Update the email state with the input value
+    };
+
+
+
   const [loading, setLoading] = useState(false);// Declare loading state
   // State variable to hold selected date and time
   const [selectedDateTime, setSelectedDateTime] = useState({ date: '', shift: '' });
@@ -31,18 +40,18 @@ const ShiftOrganizer = () => {
 
   // Function to send data to server
   const sendDataToServer = async() => {
-    // Here you can send the selectedDateTime variable to the server
-    console.log('Sending data to server:', selectedDateTime);
-    // Replace console.log with your actual API call to send the data to the server
-    //const Shift = {
-    //  getCookie: getCookie, 
-    //  date: selectedDateTime.date,
-    //  shift: selectedDateTime.shift
-    //};     
+    const Shift = {
+     barberMail: email, 
+     shiftDay: selectedDateTime.date,
+     shiftTime: selectedDateTime.shift
+    };
+    console.log('Sending data to server:', Shift);
+
+    
 
     try {
       setLoading(true);
-      const response = await axios.post("/api/shiftOrganizer", selectedDateTime);
+      const response = await axios.post("/api/shiftOrganizer", Shift);
       console.log("Login success", response.data);
       toast.success("Login success");
   } catch (error) {
@@ -108,6 +117,17 @@ const ShiftOrganizer = () => {
       <div className="center">
       {selectedDateTime.shift && <p>Selected Shift: {selectedDateTime.shift === 'morning' ? 'בוקר' : 'ערב'}</p>}
       </div>
+      
+      <div className="center">
+        <label htmlFor="email-input">הכנס כתובת דוא"ל:</label>
+        <input 
+          type="email" 
+          id="email-input" 
+          value={email} 
+          onChange={handleEmailChange} 
+          placeholder="הזן כתובת דואר אלקטרוני" 
+        />
+      </div>      
 
       {/* Button to send data to server */}
       <div className="center">

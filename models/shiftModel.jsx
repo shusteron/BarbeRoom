@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 
 
 const shiftSchema = new mongoose.Schema({
-  barberId:
+barberMail:
   {
-      type: mongoose.Schema.Types.ObjectId,
+      //type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'barbers', // Reference to the barbers model
       required: true
   },

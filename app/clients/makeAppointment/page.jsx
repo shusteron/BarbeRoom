@@ -1,6 +1,8 @@
 "use client"
 import Link from "next/link"
 // import '@styles/globals.css'
+import Image from 'next/image'
+import Background from "../../../public/images/Background.jpg"
 import "../../../styles/globals.css"
 import axios from "axios";
 import BarbersList from "../../../components/BarbersList"
@@ -26,6 +28,10 @@ const makeAppointmentsPage = () => {
 
   return ( 
     <div>
+      <div className='absolute -z-10 w-full'>
+        <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000}>
+        </Image>
+      </div>
       <BarbersList></BarbersList>
 
       {/* <BarberList onSelectBarber={setSelectedBarber} />

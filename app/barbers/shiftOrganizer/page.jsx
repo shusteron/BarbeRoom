@@ -129,6 +129,9 @@ const RegisterShiftPage = () => {
           </button>
         </div>
       </form>
+      <div className='absolute -z-10 w-full'>
+        <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />
+      </div>
     </div>
   );
 };

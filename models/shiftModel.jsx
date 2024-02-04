@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 
 
 const shiftSchema = new mongoose.Schema({
-  barberId:
+barberMail:
   {
-      type: mongoose.Schema.Types.ObjectId,
+      //type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'barbers', // Reference to the barbers model
       required: true
   },
@@ -14,13 +15,16 @@ const shiftSchema = new mongoose.Schema({
       type: Date,
       required: true
   },
-  shiftTime: 
-  {
-      type: String,
-      required: true
+  morningShift: {
+    type: Boolean,
+    default: false,
+  },
+  eveningShift: {
+    type: Boolean,
+    default: false,
   }
 })
 
 const Shift = mongoose.models.Shift || mongoose.model('Shift', shiftSchema);
 
-export default Shift;  
+export default Shift;

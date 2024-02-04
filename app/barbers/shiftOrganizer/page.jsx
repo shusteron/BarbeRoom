@@ -10,111 +10,127 @@ import {useRouter} from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 //import barberModel from '../../../models/barberModel'
-import getCookie from '../../utils/cookies'
+import { getCookie } from '../../utils/cookies'
+import Cookies from 'js-cookie';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 
-const ShiftOrganizer = () => {
-  const [loading, setLoading] = useState(false);// Declare loading state
-  // State variable to hold selected date and time
-  const [selectedDateTime, setSelectedDateTime] = useState({ date: '', shift: '' });
 
-  // Handler for date selection
-  const handleDateChange = (event) => {
-    setSelectedDateTime({ ...selectedDateTime, date: event.target.value });
-  };
+const RegisterShiftPage = () => {
+  const [shiftDay, setShiftDay] = useState(new Date());
+  const [morningShift, setMorningShift] = useState(false);
+  const [eveningShift, setEveningShift] = useState(false);
 
-  // Handler for time selection
-  const handleTimeChange = (event) => {
-    setSelectedDateTime({ ...selectedDateTime, shift: event.target.value });
-  };
 
-  // Function to send data to server
-  const sendDataToServer = async() => {
-    // Here you can send the selectedDateTime variable to the server
-    console.log('Sending data to server:', selectedDateTime);
-    // Replace console.log with your actual API call to send the data to the server
-    //const Shift = {
-    //  getCookie: getCookie, 
-    //  date: selectedDateTime.date,
-    //  shift: selectedDateTime.shift
-    //};     
+  const formik = useFormik({
+    initialValues: {
+      shiftDay: null,
+      morningShift: false,
+      eveningShift: false,
+    },
+    validationSchema: Yup.object({
+      shiftDay: Yup.date().required('Shift day is required'),
+      
+    }),
 
-    try {
-      setLoading(true);
-      const response = await axios.post("/api/shiftOrganizer", selectedDateTime);
-      console.log("Login success", response.data);
-      toast.success("Login success");
-  } catch (error) {
-      console.log("Login failed", error.message);
-      toast.error(error.message);
+    onSubmit: async (values) => {
+      try {
 
-      // Handle incorrect email or password fields.
-      if (error.response && error.response.status === 400) {
-          // Unauthorized - Incorrect email or password    
-          toast.error("Incorrect email or password. Please try again.");
-      } else {
-          // Other error cases
-          toast.error("Login failed. Please try again later.");
+        // Get the token from wherever it is stored
+        const token = Cookies.get("token");
+
+        // Convert the date to a string in a suitable format if it's not null
+        const formattedShiftDay = values.shiftDay ? values.shiftDay.toISOString().split('T')[0] : null;
+
+        // Use token and formattedShiftDay for shift registration
+        const response = await axios.post('/api/shiftOrganizer', {
+          token,
+          shiftDay: formattedShiftDay,
+          morningShift: formik.values.morningShift,
+          eveningShift: formik.values.eveningShift,
+        });
+
+        console.log('Shift registration success', response.data);
+        toast.success('Shift registration successful!');
+      } catch (error) {
+        console.error('Shift registration error:', error);
+        toast.error('Shift registration failed');
       }
-  }
-   finally{
-  setLoading(false);
-  setSelectedDateTime({ date: '', shift: '' }); // Reset selectedDateTime after sending data
-  }
-  };
+    },
+  });
 
-  // Ensuring that minimum date is set to the current date.
-  const getCurrentDate = () => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    let month = currentDate.getMonth() + 1;
-    let day = currentDate.getDate();
-    
-
-    // Ensure month and day are formatted with leading zeros if needed
-    month = month < 10 ? `0${month}` : month;
-    day = day < 10 ? `0${day}` : day;
-
-    return `${year}-${month}-${day}`;
-  };
 
   return (
-    <>
-      <div className='absolute -z-10 w-full'>
-        <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />
-      </div>
-      <div className="center">
-        <label htmlFor="date-picker">בחר תאריך</label>
-        <input 
-          type="date" 
-          name="trip-start"  
-          id="date-picker" 
-          min={getCurrentDate()} 
-          onChange={handleDateChange} 
-        />
-      </div>
-      <div className="center">
-        <label htmlFor="timeOfDay">בוקר או ערב</label>
-        <select id="timeOfDay" name="timeOfDay" onChange={handleTimeChange}>
-          <option value="">בחר...</option>
-          <option value="morning">בוקר</option>
-          <option value="evening">ערב</option>
-        </select>
-      </div>
-      <div className="center">
-        {selectedDateTime.date && <p>Selected Date: {selectedDateTime.date }</p>}
-      </div>
-      <div className="center">
-      {selectedDateTime.shift && <p>Selected Shift: {selectedDateTime.shift === 'morning' ? 'בוקר' : 'ערב'}</p>}
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <h1>{formik.isSubmitting ? 'Processing' : 'Register Shift'}</h1>
+      <hr />
 
-      {/* Button to send data to server */}
-      <div className="center">
-        <button onClick={sendDataToServer}>הירשם</button>
-      </div>
-    </>
+      <form onSubmit={formik.handleSubmit}>
+        
+        {/* Shift Day */}
+        <div className="mb-4">
+          {formik.touched.shiftDay && formik.errors.shiftDay && (
+            <p className="text-red-500">{formik.errors.shiftDay}</p>
+          )}
+          <label htmlFor="shiftDay">Shift Day</label>
+          <DatePicker
+            id="shiftDay"
+            selected={formik.values.shiftDay}
+            onChange={(date) => formik.setFieldValue('shiftDay', date)}
+            className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+            minDate={new Date()} // Set minimum date to the current day
+            dateFormat="yyyy-MM-dd"
+/>
+        </div>
+
+        {/* Morning Shift */}
+          <div className="mb-4">
+            {formik.touched.morningShift && formik.errors.morningShift && (
+              <p className="text-red-500">{formik.errors.morningShift}</p>
+            )}
+            <label>
+              <input
+                type="checkbox"
+                checked={formik.values.morningShift}
+                onChange={(e) => formik.setFieldValue("morningShift", e.target.checked)}
+                name="morningShift"
+              />
+              Morning Shift
+            </label>
+          </div>
+
+          {/* Evening Shift */}
+          <div className="mb-4">
+            {formik.touched.eveningShift && formik.errors.eveningShift && (
+              <p className="text-red-500">{formik.errors.eveningShift}</p>
+            )}
+            <label>
+              <input
+                type="checkbox"
+                checked={formik.values.eveningShift}
+                onChange={(e) => formik.setFieldValue("eveningShift", e.target.checked)}
+                name="eveningShift"
+              />
+              Evening Shift
+            </label>
+          </div> 
+
+        <div className="flex items-center justify-center">
+          <button
+            type="submit"
+            className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+            disabled={formik.isSubmitting}
+          >
+            {formik.isSubmitting ? 'Processing' : 'Register Shift'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
-export default ShiftOrganizer;
+export default RegisterShiftPage;

@@ -12,8 +12,10 @@ const BarbersList = ({ onSelectBarber }) => {
 
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
 
-  const handleBarberChoose = (event) => {
-    
+  const router = useRouter();
+
+  const handleBarberChoose = (barberId) => {
+    setSelectedBarber(barberId);
   };
 
   useEffect(() => {
@@ -43,10 +45,11 @@ const BarbersList = ({ onSelectBarber }) => {
       <div className="center">
       <ul>
         {barbers.map(barber => (
-          <li key={barber.id}>{barber.name} {barber.lastName}</li>
+          <li key={barber.id} onClick={() => handleBarberChoose(barber.id)}>{barber.name} {barber.lastName}</li>
         ))}
       </ul>
       </div>
+
     </div>
   )
 }

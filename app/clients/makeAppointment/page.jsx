@@ -34,8 +34,8 @@ const makeAppointmentsPage = () => {
       </div>
       <BarbersList></BarbersList>
 
-      {/* <BarberList onSelectBarber={setSelectedBarber} />
-      {selectedBarber && (
+      <BarbersList onSelectBarber={setSelectedBarber} /> 
+      {/* {selectedBarber && (
         <>
           <DaySelector
             barberId={selectedBarber.id}

@@ -13,7 +13,7 @@ export async function GET(request)
 
     if (request.method === 'GET') 
     {
-      try 
+      try  
       {
         // Finding all barbers from the database
         const barbers = await Barbers.find({});

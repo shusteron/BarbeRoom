@@ -26,4 +26,4 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
     );  
 }
 
-export default HaircutTypeSelector
+export default HaircutTypeSelector 

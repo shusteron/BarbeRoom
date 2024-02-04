@@ -22,6 +22,6 @@ barberMail:
   }
 })
 
-const Shift = mongoose.models.Shift || mongoose.model('Shift', shiftSchema);
+const Shift = mongoose.models.shift || mongoose.model('shift', shiftSchema);
 
 export default Shift;  

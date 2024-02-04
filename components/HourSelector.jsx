@@ -30,4 +30,4 @@ const HourSelector = ({ barberId, selectedDay, onSelectHour }) => {
     );
 }
 
-export default HourSelector
+export default HourSelector 

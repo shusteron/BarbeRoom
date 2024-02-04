@@ -5,16 +5,29 @@ import React, { useState, useEffect } from "react";
 
 
 
+
 const DaySelector = ({ barberId, onSelectDay } ) => {
 
     const [days, setDays] = useState([]); // list of days - initially an empty list
 
     useEffect(() => {
 
-        // Fetch days for the selected barber
-        const fetchedDays = ['Monday', 'Tuesday', 'Wednesday'];
-        setDays(fetchedDays);
-    }, []);
+        if(barberId)
+        {
+          try 
+          {
+            fetch("/api/workSchedule?barberMail=${barberId}")
+            .then( (response) => response.json() )
+            .then( (data) => setBarbers(data));
+          } 
+    
+          catch (error) 
+          {
+            console.error("Could not fetch barber's shifts", error);
+          }
+        }
+        
+    }, [barberId]);
 
     return (
         <div>
@@ -25,7 +38,7 @@ const DaySelector = ({ barberId, onSelectDay } ) => {
                 {day}
               </li>
             ))}
-          </ul>
+          </ul> 
         </div>
       );
 }

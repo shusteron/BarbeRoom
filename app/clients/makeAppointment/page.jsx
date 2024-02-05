@@ -39,7 +39,7 @@ const makeAppointmentsPage = () => {
       {selectedBarber && (
         <>
           <DaySelector
-            barberId={selectedBarber._id}
+            barberId={selectedBarber}
             onSelectDay={setSelectedDay}
           />
           {selectedDay && (

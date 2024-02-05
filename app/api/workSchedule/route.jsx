@@ -18,9 +18,8 @@ export async function GET(request)
       {
         // Extracting barberMail from request 
         // const requestBody = await request.json();
-        // const { barberEmail } = request.query;
+        // const { barberEmail } = await request.json();
 
-        
         // Finding all barbers from the database
         const barberShifts = await Shift.find({});
 

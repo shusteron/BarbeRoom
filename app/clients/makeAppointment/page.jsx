@@ -22,6 +22,8 @@ const makeAppointmentsPage = () => {
 
   const handleAppointment = () => {
 
+    
+
     // create appointment in MongoDB
     console.log('Appointment created:', { selectedBarber, selectedDay, selectedHour, selectedHaircutType });
   };

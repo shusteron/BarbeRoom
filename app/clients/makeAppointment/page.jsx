@@ -56,6 +56,7 @@ const makeAppointmentsPage = () => {
 
     catch
     {
+      console.log("Error in creating appointment");
       console.error('Appointment creation error:', error);
     }
   };

@@ -16,15 +16,6 @@ export async function GET(request)
     {
       try  
       {
-        // console.log("#### Req: " + request.nextUrl);
-        // if(request.nextUrl.searchParams) {
-        //   console.log("#### Params: " + request.nextUrl.searchParams.toString().split("=")[1]);
-        //   const shay = request.nextUrl.searchParams.toString().split("=")[1]; 
-        //   console.log("############# shay: " + shay);
-        // }
-
-
-
         // Extracting barberMail from request 
         // const requestBody = await request.json();
         // urlParams = request.nextUrl.searchParams;
@@ -37,7 +28,7 @@ export async function GET(request)
         console.log("decodeURI: " + decodedBarberEmail);
 
         // Finding all barbers from the database
-        const barberShifts = await Shift.find({});
+        const barberShifts = await Shift.find({ barberMail: decodedBarberEmail });
 
         // contain an array of unique shift days values extracted from the barberShifts array, without any duplicates
         // const uniqueDays = [...new Set(barberShifts.map(shift => shift.shiftDay))];

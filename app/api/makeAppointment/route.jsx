@@ -37,7 +37,7 @@ export async function GET(request)
   } 
 
 
-  // Handler function to handle incoming POST requests
+// Handler function to handle incoming POST requests
 export async function POST(request) 
 {
     console.log("Request method(makeAppointment):", request.method);
@@ -56,6 +56,15 @@ export async function POST(request)
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
         const clientId = decodedToken.email;
 
+        // Check if the appointment already exists in the database
+        const appointmentExists = await appointmentExistsInDatabase(clientId, barberId, appointmentDate, appointmentHour);
+
+        if (appointmentExists) 
+        {
+          console.log('Appointment already exists in the database');
+          return NextResponse.json({ error: 'Appointment already exists in the database' }, { status: 400 });
+        }
+
         const newAppointment = new Appointment(
         {
           clientId,
@@ -65,15 +74,13 @@ export async function POST(request)
           appointmentHaircutType,
         });
 
-        // console.log(clientId);
-        // console.log(barberId);
-        // console.log(appointmentDate);
-        // console.log(appointmentHour);
-        // console.log(appointmentHaircutType);
-
+        // create new Appointment object asynchroniously and save it to the atlas mongo db
         const savedAppointment = await newAppointment.save();
 
+        // Sending a successful response with the saved appointment
         console.log('Appointment created:', savedAppointment);
+
+        
         return NextResponse.json(savedAppointment, { status: 201 });
       } 
        
@@ -89,4 +96,20 @@ export async function POST(request)
       // Handling other HTTP methods which are not relatable
       return NextResponse.json({ error: 'Method Not Allowed' });
     }
+}
+
+
+// Function to check if the appointment already exists in the database
+async function appointmentExistsInDatabase(clientId, barberId, appointmentDate, appointmentHour) 
+{
+  // Find the appointment in the database
+  const existingAppointment = await Appointment.findOne(
+    {
+      barberId,
+      appointmentDate,
+      appointmentHour,
+  });
+
+  // Return true if the appointment already exists in the database
+  return existingAppointment !== null;
 }

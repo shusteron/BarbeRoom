@@ -53,8 +53,7 @@ const BarbersList = ({ onSelectBarber }) => {
         ))}
       </select>
       </div>
-
-    </div>
+    </div> 
   )
 }
 

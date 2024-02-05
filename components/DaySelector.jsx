@@ -17,13 +17,12 @@ const DaySelector = ({ barberId, onSelectDay }) => {
     };  
 
     useEffect(() => {
-
+ 
       console.log("getting shifts");
 
       try 
       {
-        console.log("barberId1:", barberId);
-        fetch("/api/workSchedule")
+        fetch(`/api/workSchedule?barberId=${barberId}`)
         .then( (response) => response.json() )
         .then( (data) => setDays(data));
       } 
@@ -36,7 +35,7 @@ const DaySelector = ({ barberId, onSelectDay }) => {
     }, [barberId]);
 
     console.log("days:", days);
-
+ 
     return (
         <div>
         <h1 className="center">בחר\י יום</h1>

@@ -15,7 +15,7 @@ const HourSelector = ({ barberId, selectedDay, onSelectHour }) => {
     }; 
 
     useEffect(() => {
-      
+       
       console.log("getting hours");
 
       try 

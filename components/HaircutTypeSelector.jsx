@@ -14,7 +14,7 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
       onSelectHaircutType(selectedHaircutType);
     };
 
-    useEffect(() => {
+    useEffect(() => { 
 
       try 
       {
@@ -31,17 +31,6 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
     }, []);
 
     return (
-      // <div>
-      //   <h1>בחר\י סוג תספורת</h1>
-      //   <select value={haircutType} onChange={handleHaircutTypeChange}>
-      //     <option value="">Select</option>
-      //     <option value="Regular">Regular</option>
-      //     <option value="Fade">Fade</option>
-      //     <option value="Buzzcut">Buzzcut</option>
-      //   </select>
-      //   <button onClick={() => onSelectHaircutType(haircutType)}>Select</button>
-      // </div>
-
       <div>
         <h1 className="center">בחר\י סוג תספורת</h1>
         <div className="center">

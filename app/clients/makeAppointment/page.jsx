@@ -3,7 +3,7 @@ import Link from "next/link"
 // import '@styles/globals.css'
 import Image from 'next/image'
 import Background from "../../../public/images/Background.jpg"
-import "../../../styles/globals.css"
+import "../../../styles/globals.css" 
 import axios from "axios";
 import BarbersList from "../../../components/BarbersList"
 import DaySelector from "../../../components/DaySelector"
@@ -11,6 +11,8 @@ import HourSelector from "../../../components/HourSelector"
 import HaircutTypeSelector from "../../../components/HaircutTypeSelector"
 import React, { useState, useEffect } from 'react';
 import { NextRequest, NextResponse } from "next/server";
+import Cookies from 'js-cookie';
+import { getCookie } from "../../utils/cookies"
 
 
 const makeAppointmentsPage = () => {
@@ -20,12 +22,42 @@ const makeAppointmentsPage = () => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
-  const handleAppointment = () => {
+  const createAppointment = async () => {
 
-    
+    try
+    {
+      // Check if all necessary data is available
+      if (!selectedBarber || !selectedDay || !selectedHour || !selectedHaircutType) 
+      {
+        console.error('Missing data for appointment creation');
+        return;
+      }
 
-    // create appointment in MongoDB
-    console.log('Appointment created:', { selectedBarber, selectedDay, selectedHour, selectedHaircutType });
+      // Get the token from wherever it is stored
+      const token = Cookies.get("token");
+      
+      // Prepare data for the appointment
+      const appointmentData = 
+      {
+        token, 
+        barberId: selectedBarber,
+        appointmentDate: selectedDay,
+        appointmentHour: selectedHour,
+        appointmentHaircutType: selectedHaircutType
+      };
+
+      const sendAppointmentToServer = await axios.post("/../api/makeAppointment", appointmentData);
+
+      // create appointment in MongoDB
+      console.log(sendAppointmentToServer.data);
+      // console.log('Appointment created:', { selectedBarber, selectedDay, selectedHour, selectedHaircutType });
+
+    }
+
+    catch
+    {
+      console.error('Appointment creation error:', error);
+    }
   };
 
 
@@ -61,7 +93,7 @@ const makeAppointmentsPage = () => {
         </>
       )}
       {selectedHaircutType && (
-        <button onClick={createAppointment}>Create Appointment</button>
+        <button onClick={createAppointment}>קבע\י תור</button>
       )}
       </div>
 

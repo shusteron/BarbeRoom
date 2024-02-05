@@ -4,33 +4,35 @@ import { type } from "os";
 const appointmentsSchema = new mongoose.Schema({
     clientId: 
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'clients', // Reference to the clients model
-      required: true
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
+        ref: 'clients', // Reference to the clients model
+        required: true
     },
     barberId:
     {
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'barbers', // Reference to the barbers model
         required: true
     },
-    appointment_date: 
+    appointmentDate: 
     {
         type: Date,
         required: true
     },
-    appointment_hour: 
+    appointmentHour: 
     {
         type: String,
         required: true
     },
-    appointment_haircutType: 
+    appointmentHaircutType: 
     {
         type: String,
         required: true
     }
 })
 
-const appointments = mongoose.models.appointments || mongoose.model("appointments", appointmentsSchema);
+const Appointment = mongoose.models.appointments || mongoose.model("appointments", appointmentsSchema);
 
-export default appointments; 
+export default Appointment; 

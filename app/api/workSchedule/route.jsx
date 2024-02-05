@@ -9,16 +9,32 @@ export async function GET(request)
 {   
     console.log("Request method(workSchedule):", request.method);
 
-    // Establishing a connection to the database
+    // Establishing a connection to the database 
     await connect(); 
 
     if (request.method === 'GET') 
     {
       try  
       {
+        // console.log("#### Req: " + request.nextUrl);
+        // if(request.nextUrl.searchParams) {
+        //   console.log("#### Params: " + request.nextUrl.searchParams.toString().split("=")[1]);
+        //   const shay = request.nextUrl.searchParams.toString().split("=")[1]; 
+        //   console.log("############# shay: " + shay);
+        // }
+
+
+
         // Extracting barberMail from request 
         // const requestBody = await request.json();
-        // const { barberEmail } = await request.json();
+        // urlParams = request.nextUrl.searchParams;
+        // stringParams = urlParam.toString();
+        // const splitedUrl = stringParams.split("=");
+        // const barberEmail = splitedUrl[1];
+
+        const barberEmail = request.nextUrl.searchParams.toString().split("=")[1];
+        let decodedBarberEmail = decodeURIComponent(barberEmail);
+        console.log("decodeURI: " + decodedBarberEmail);
 
         // Finding all barbers from the database
         const barberShifts = await Shift.find({});
@@ -34,6 +50,7 @@ export async function GET(request)
        
       catch (error) 
       {
+        console.log("Error: " + error);
         return NextResponse.json({ error: 'Internal Server Error' });
       }
     } 

@@ -90,3 +90,25 @@ button:not([disabled]):hover {
   color: rgb(252, 251, 251); /* New color on hover */
   
 }
+.shift-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.shift-table th, .shift-table td {
+  border: 1px solid #0a0000;
+  padding: 8px;
+}
+
+.shift-table th {
+  text-align: left;
+  background-color: #051afb;
+}
+
+/* .shift-table tr:nth-child(even) {
+  background-color: #f40101;
+} */
+
+.shift-table tr:hover {
+  background-color: #010008;
+}

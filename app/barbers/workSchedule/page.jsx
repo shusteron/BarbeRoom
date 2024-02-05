@@ -7,6 +7,7 @@ import axios from "axios";
 
 const WorkSchedulePage = () => {
   const [shifts, setShifts] = useState([]);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -16,9 +17,16 @@ const WorkSchedulePage = () => {
           throw new Error('Failed to fetch data');
         }
         const data = response.data;
+         // Ensure data is an array before setting it in state
+      if (Array.isArray(data)) {
         setShifts(data);
+      } else {
+        throw new Error('Data is not in the expected format');
+      }
       } catch (error) {
         console.error('Error fetching data:', error);
+        // Handle error: set shifts to an empty array or handle it according to your application logic
+        setShifts([]);
       }
     }
     fetchData();
@@ -31,29 +39,35 @@ const WorkSchedulePage = () => {
   </div>
     <h1 className='center'>workSchedule</h1>
     <div className="center">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Date</th>
-            <th>Morning Shift</th>
-            <th>Evening Shift</th>
+  {shifts.length > 0 ? (
+    <table className="shift-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Date</th>
+          <th>Morning Shift</th>
+          <th>Evening Shift</th>
+        </tr>
+      </thead>
+      <tbody>
+        {shifts.map((shift) => (
+          <tr key={shift._id}>
+            <td>{shift.barberMail}</td>
+            <td>{shift.barberMail}</td>
+            <td>{new Date(shift.shiftDay).toDateString()}</td>
+            <td>{shift.morningShift ? 'Yes' : 'No'}</td>
+            <td>{shift.eveningShift ? 'Yes' : 'No'}</td>
           </tr>
-        </thead>
-        <tbody>
-          {shifts.map((shift) => (
-            <tr key={shift._id}>
-              <td>{shift.barberMail.name}</td>
-              <td>{shift.barberMail.lastName}</td>
-              <td>{new Date(shift.shiftDay).toDateString()}</td>
-              <td>{shift.morningShift ? 'Yes' : 'No'}</td>
-              <td>{shift.eveningShift ? 'Yes' : 'No'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>No shifts available</p>
+  )}
+</div>
+
+
     
   </>
   );

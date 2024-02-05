@@ -3,23 +3,25 @@ import mongoose from 'mongoose';
 
 
 const shiftSchema = new mongoose.Schema({
-barberMail:
+    barberMail:
   {
       //type: mongoose.Schema.Types.ObjectId,
       type: String,
       ref: 'barbers', // Reference to the barbers model
       required: true
   },
-  shiftDay: 
+    shiftDay: 
   {
       type: Date,
       required: true
   },
-  morningShift: {
+    morningShift: 
+  {
     type: Boolean,
     default: false,
   },
-  eveningShift: {
+  eveningShift: 
+  {
     type: Boolean,
     default: false,
   }

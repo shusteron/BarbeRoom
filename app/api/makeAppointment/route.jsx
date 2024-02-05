@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Handler function to handle incoming HTTP requests
 export async function GET(request) 
 {   
-    console.log("Request method:", request.method);
+    console.log("Request method(makeAppointment):", request.method);
 
     // Establishing a connection to the database
     await connect(); 

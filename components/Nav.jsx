@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 import "../styles/globals.css"
 import ClientNav from './ClientNav'
 import BarberNav from './BarberNav'
-
+import Background from '../public/images/Background.jpg'
 import { deleteCookie, getCookie } from "../app/utils/cookies";
 import {useRouter} from "next/navigation";
 import {calculateUserType} from "../app/utils/calculateUserType";
@@ -52,6 +52,10 @@ const Nav = () => {
 
 
   return (
+<>
+<div className='absolute -z-10 w-full'>
+    <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />
+  </div>
     <nav className='.navbar'>
       <Link href={homePage()} className='flex gap-2 flex-center'>
         <Image
@@ -70,6 +74,7 @@ const Nav = () => {
         
       
     </nav>
+    </>
   )
 }
 

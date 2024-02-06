@@ -44,7 +44,6 @@ const WorkSchedulePage = () => {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Last Name</th>
           <th>Date</th>
           <th>Morning Shift</th>
           <th>Evening Shift</th>
@@ -53,8 +52,7 @@ const WorkSchedulePage = () => {
       <tbody>
         {shifts.map((shift) => (
           <tr key={shift._id}>
-            <td>{shift.barberMail}</td>
-            <td>{shift.barberMail}</td>
+            <td>{shift.barberMail.split('@')[0]}</td>
             <td>{new Date(shift.shiftDay).toDateString()}</td>
             <td>{shift.morningShift ? 'Yes' : 'No'}</td>
             <td>{shift.eveningShift ? 'Yes' : 'No'}</td>

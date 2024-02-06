@@ -16,12 +16,7 @@ export async function GET(request)
     {
       try  
       {
-        // Extracting barberMail from request 
-        // const requestBody = await request.json();
-        // urlParams = request.nextUrl.searchParams;
-        // stringParams = urlParam.toString();
-        // const splitedUrl = stringParams.split("=");
-        // const barberEmail = splitedUrl[1];
+        
 
         const barberEmail = request.nextUrl.searchParams.toString().split("=")[1];
         let decodedBarberEmail = decodeURIComponent(barberEmail);
@@ -30,11 +25,9 @@ export async function GET(request)
         // Finding all barbers from the database
         const barberShifts = await Shift.find({ barberMail: decodedBarberEmail });
 
-        // contain an array of unique shift days values extracted from the barberShifts array, without any duplicates
-        // const uniqueDays = [...new Set(barberShifts.map(shift => shift.shiftDay))];
+        
 
         // Sending a successful response with the list of barbers
-        // return NextResponse.json(uniqueDays.map(day => day.toISOString()));
         return NextResponse.json(barberShifts);
         // return NextResponse.json(uniqueDays);
       } 

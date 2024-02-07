@@ -50,7 +50,7 @@ const FutureAppointmentsPage = () => {
             <tbody>
               {appointments.map((appointment) => (
                 <tr key={appointment._id} >
-                  <td>{appointment.barberId}</td>
+                  <td>{appointment.barberId.split('@')[0]}</td>
                   <td>{new Date(appointment.appointmentDate).toDateString()}</td>
                   <td>{appointment.appointmentHour}</td>
                   <td>{appointment.appointmentHaircutType}</td>

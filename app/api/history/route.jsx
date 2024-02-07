@@ -2,44 +2,40 @@ import {connect} from "../../../dbConfig/dbConfig";
 import Appointment from "../../../models/appointmentsModel";
 import Barbers from "../../../models/barberModel";
 import { NextRequest, NextResponse } from "next/server";
+import jwt from 'jsonwebtoken'; // Import JWT library
 
+connect();
 
 // Handler function to handle incoming HTTP requests
-export async function GET(request) 
-{   
-    console.log("Request method:", request.method);
+export async function POST(request) {
+  console.log("Request method:", request.method);
 
-    // Establishing a connection to the database 
-    await connect(); 
+  if (request.method === 'POST') {
+    try {
+      // Initializing the token object.
+      const reqBody = await request.json();
+      const token = reqBody.token;
 
-    if (request.method === 'GET') 
-    {
-      try  
-      {
-        const clientEmail = request.nextUrl.searchParams.toString().split("=")[1];
-        let decodedClientEmail = decodeURIComponent(clientEmail);
-        console.log("decodeURI: " + decodedClientEmail);
+      
+      // Decode the token to get the client's email
+      const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+      const clientEmail = decodedToken.email;
 
-        // Finding all barbers from the database
-        const ClientAppointment = await Appointment.find({ clientId: decodedClientEmail });
+      console.log("Client Email:", clientEmail);
 
-        
-        console.log("ClientAppointment: ",ClientAppointment)
-        // Sending a successful response with the list of barbers
-        return NextResponse.json(ClientAppointment);
-        // return NextResponse.json(uniqueDays);
-      } 
-       
-      catch (error) 
-      {
-        console.log("Error: " + error);
-        return NextResponse.json({ error: 'Internal Server Error' });
-      }
-    } 
-    
-    else 
-    {
-      // Handling other HTTP methods which are not relatable(POST, PUT, DELETE..)  
-      return NextResponse.json({ error: 'Method Not Allowed' });
+      // Finding all appointments for the given client email from the database
+      const clientAppointments = await Appointment.find({ clientId: clientEmail }).select('barberId appointmentDate appointmentHour appointmentHaircutType');
+
+      console.log("Client Appointments:", clientAppointments);
+      
+      // Sending a successful response with the list of appointments
+      return NextResponse.json(clientAppointments);
+    } catch (error) {
+      console.log("Error:", error);
+      return NextResponse.json({ error: 'Internal Server Error' });
     }
-  } 
+  } else {
+    // Handling other HTTP methods which are not relatable (GET, PUT, DELETE..)  
+    return NextResponse.json({ error: 'Method Not Allowed' });
+  }
+}

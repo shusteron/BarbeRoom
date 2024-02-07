@@ -16,32 +16,38 @@ export async function GET(request)
     {
       try  
       {
-        
-
+        // Extracting the barber's email from the query parameters
         const barberEmail = request.nextUrl.searchParams.toString().split("=")[1];
+
+        // Decoding the barber's email
         let decodedBarberEmail = decodeURIComponent(barberEmail);
-        console.log("decodeURI: " + decodedBarberEmail);
 
         // Finding all barbers from the database
         const barberShifts = await Shift.find({ barberMail: decodedBarberEmail });
 
-        
+        // Logging the list of barbers
+        console.log('Barber shifts:', barberShifts);
 
         // Sending a successful response with the list of barbers
         return NextResponse.json(barberShifts);
-        // return NextResponse.json(uniqueDays);
       } 
        
       catch (error) 
       {
-        console.log("Error: " + error);
+        // Logging the error message
+        console.error("Failed to fetch shifts from DB due to: " + error);
+
+        // Sending an error response
         return NextResponse.json({ error: 'Internal Server Error' });
       }
     } 
     
     else 
     {
-      // Handling other HTTP methods which are not relatable(POST, PUT, DELETE..)  
+      // Logging the error message
+      console.error("Not a GET request");
+      
+      // Handling other HTTP methods which are not relatable
       return NextResponse.json({ error: 'Method Not Allowed' });
     }
   } 

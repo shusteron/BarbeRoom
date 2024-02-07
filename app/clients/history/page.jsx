@@ -42,12 +42,13 @@ const HistoryPage = () => {
   }, []);
 
   return (
+
     <>
       {/* Creating and inizialing the history table */}
       <h1 className='center'>הסטורית תורים</h1>
       <div className="center">
         {appointments.length > 0 ? (
-          <table className="appointment-table">
+          <table className="shift-table">
             <thead>
               <tr>
                 <th>Barber Name</th>
@@ -59,7 +60,7 @@ const HistoryPage = () => {
             <tbody>
               {appointments.map((appointment) => (
                 <tr key={appointment._id} >
-                  <td>{appointment.barberID}</td>
+                  <td>{appointment.barberId.split('@')[0]}</td>
                   <td>{new Date(appointment.appointmentDate).toDateString()}</td>
                   <td>{appointment.appointmentHour}</td>
                   <td>{appointment.appointmentHaircutType}</td>

@@ -23,8 +23,14 @@ export async function POST(request) {
 
       console.log("Client Email:", clientEmail);
 
+      // Get the current date
+      const currentDate = new Date();
+
       // Finding all appointments for the given client email from the database
-      const clientAppointments = await Appointment.find({ clientId: clientEmail }).select('barberId appointmentDate appointmentHour appointmentHaircutType');
+      const clientAppointments = await Appointment.find({ 
+        clientId: clientEmail,
+        appointmentDate: { $lt: currentDate } // Only appointments before the current date
+      }).select('barberId appointmentDate appointmentHour appointmentHaircutType');
 
       console.log("Client Appointments:", clientAppointments);
       

@@ -54,7 +54,7 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
         ))}
         </select>
         </div>
-      </div>
+      </div> 
     );  
 }
 

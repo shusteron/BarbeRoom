@@ -14,18 +14,19 @@ import { NextRequest, NextResponse } from "next/server";
 import Cookies from 'js-cookie';
 import { getCookie } from "../../utils/cookies"
 import { toast } from "react-hot-toast";
-
+ 
 
 const makeAppointmentsPage = () => {
 
   // useStates to store the selected barber, day, hour and haircut type
   const [selectedBarber, setSelectedBarber] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedShiftType, setSelectedShiftType] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
   // Function to create an appointment
-  const createAppointment = async () => {
+  const createAppointment = async () => { 
 
     try
     {
@@ -52,10 +53,10 @@ const makeAppointmentsPage = () => {
       };
 
       // send the appointment to the server
-      const sendAppointmentToServer = await axios.post("/../api/makeAppointment", appointmentData);
+      const appointmentDataFromServer = await axios.post("/../api/makeAppointment", appointmentData);
 
-      // Display a success message if the appointment was created successfully
-      console.log(sendAppointmentToServer.data);
+      // Log the appointment data from the server
+      console.log(appointmentDataFromServer.data);
       
       // Display a success message to the user if the appointment was created successfully
       toast.success("התור נקבע בהצלחה");
@@ -79,8 +80,9 @@ const makeAppointmentsPage = () => {
 
       <div>
         <BarbersList onSelectBarber={setSelectedBarber} />
-        {selectedBarber && (<DaySelector barberId={selectedBarber} onSelectDay={setSelectedDay} />)}
-        {selectedDay && (<HourSelector barberId={selectedBarber} selectedDay={selectedDay} onSelectHour={setSelectedHour} />)}
+        {selectedBarber && (<DaySelector barberId={selectedBarber} onSelectDay={setSelectedDay} onSelectShiftType={setSelectedShiftType} />)}
+        {selectedDay && (<HourSelector barberId={selectedBarber} selectedDay={selectedDay}
+         selectedShiftType={selectedShiftType} onSelectHour={setSelectedHour} />)}
         {selectedHour && (<HaircutTypeSelector onSelectHaircutType={setSelectedHaircutType} />)}
         {selectedHaircutType && (<button onClick={createAppointment}>קבע\י תור</button>)}
       </div>

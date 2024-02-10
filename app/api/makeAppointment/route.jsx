@@ -12,8 +12,8 @@ export async function GET(request)
     // Establishing a connection to the database
     await connect(); 
 
-    if (request.method === 'GET') 
-    {
+    if (request.method === 'GET')  
+    { 
       try  
       {
         // Finding all barbers from the database

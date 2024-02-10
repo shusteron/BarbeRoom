@@ -16,12 +16,13 @@ const BarbersList = ({ onSelectBarber }) => {
   // Function to handle the selection of a barber
   const handleBarberChoose = (barberId) => {
 
+    // Log the selected barber's id
     console.log("handleBarberChoose was called with email: " + barberId);
 
     // Calling the onSelectBarber function with the selected barber's id
     onSelectBarber(barberId);
   };
-
+ 
   // useEffect hook to fetch the list of barbers from the server
   useEffect(() => {
 

@@ -7,17 +7,23 @@ import "../styles/globals.css"
 
 
 // DaySelector component
-const DaySelector = ({ barberId, onSelectDay }) => {
+const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
 
     // useState hook to store the list of days
     const [days, setDays] = useState([]); // list of days - initially an empty list
     
-    // Function to handle the selection of a day
-    const handleDayChoose = (selectedDay) => {
+    // Function to handle the selection of a day 
+    const handleDayChoose = (selectedDay, isMorning) => {
+
+      // Logging the selected day and if it's a morning shift
       console.log("Selected day:", selectedDay);
+      console.log("isMorning:", isMorning);
 
       // Calling the onSelectDay function with the selected day
       onSelectDay(selectedDay);
+      
+      // If the selected shift is a morning shift, call the onSelectShiftType function with true, otherwise call it with false
+      onSelectShiftType(isMorning);
     };  
     
     // useEffect hook to fetch the list of days from the server
@@ -48,14 +54,15 @@ const DaySelector = ({ barberId, onSelectDay }) => {
     {
       // in case there are no shifts available for the selected barber - display a message to the user
       return <div className="center">אין משמרות קיימות</div>;
-    }
+    } 
  
     return (
         <div>
         <h1 className="center">בחר\י יום</h1>
         <div className="center">
         {days.length > 0 &&  
-        (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value)}>
+        (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,
+         days.find(day => day.shiftDay === event.target.value).morningShift)}>
           <option value="">בחר\י יום</option>
           {days.filter(day => {
                 const shiftDate = new Date(day.shiftDay);

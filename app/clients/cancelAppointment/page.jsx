@@ -4,61 +4,106 @@
 import Link from "next/link"
 // import '@styles/globals.css'
 import "../../../styles/globals.css"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import Cookies from 'js-cookie';
 
+
 const CancelAppointmentPage = () => {
 
-    // useState to store the appointment ID
-    const [appointmentId, setAppointmentId] = useState('');
+    // State to store the list of appointments
+    const [appointmentsList, setAppointmentsList] = useState([]); // list of appointments - initially an empty list
+
+    // State to store the selected appointmentID
+    const [appointmentID, setAppointmentID] = useState(null); // selected appointmentID - initially null
+
+    // Function to handle choosing an appointment
+    const handleAppointmentChoose = (appointmentId) => 
+    { 
+      // Log the appointment data
+      console.log("handleAppointmentChoose was called with appointmentId: " + appointmentId);
+
+      // Set the selected appointment
+      setAppointmentID(appointmentId);
+    };
+
+    useEffect(() => {
+
+      console.log("getting appointments");
+  
+        // Fetching the list of appointments from the server
+        try 
+        {
+          // Get the token from the cookies
+          const token = Cookies.get("token");
+          
+          // Fetch the list of appointments for this clientEmail from the server
+          fetch(`/api/cancelAppointment?clientToken=${token}`) // fetch the list of appointments by passing the token as a query parameter
+          .then( (response) => response.json() )
+          .then( (data) => setAppointmentsList(data));
+          
+
+          console.log("appointmentsList: ", appointmentsList);
+        } 
+  
+        catch (error) 
+        {
+          // Logging the error message
+          console.error("Could not fetch list of appointments", error);
+  
+          // Displaying an error toast to the user
+          toast.error("שגיאה בהצגת רשימת התורים");
+        }
+  
+    }, []); // the useEffect hook will run only once when the component is mounted
+
 
     // Function to handle canceling an appointment
     const cancelAppointment = async () => {
 
-        try 
-        {
-            // Get the token from cookies
-            const token = Cookies.get('token');
+      try 
+      {
+          // data to send to the server containing the appointment ID
+          const clientData = { appointmentID };
 
-            // Check if the appointment ID is provided
-            if (!appointmentId) 
-            {
-                toast.error('Please provide appointment ID');
-                return;
-            }
+          // Send a DELETE request to cancel the appointment
+          const response = await axios.delete('/api/cancelAppointment', { clientData });
 
-            // Data object containing token and appointment ID
-            const data = { token, appointmentId };
+          // Log the response from the server
+          console.log(response.data);
 
-            // Send a DELETE request to cancel the appointment
-            const response = await axios.delete('/../api/cancelAppointment', { data });
-
-            // Display success message if the appointment is cancelled
-            toast.success('Appointment cancelled successfully');
-            console.log(response.data); // Log the response data if needed
-
-        } 
+          // Display success message if the appointment is cancelled
+          toast.success('התור בוטל בהצלחה');
+      } 
         
-        catch (error) 
-        {
-            // Display error message if cancellation fails
-            toast.error('Failed to cancel appointment');
-            console.error(error); // Log the error for debugging
-        }
+      catch (error) 
+      {
+          // Log the error message
+          console.error(error); 
+
+          // Display error message if cancellation fails
+          toast.error('התור לא נמחק, אנא נסה שוב');
+      }
     };
 
     return (
         <div>
-            <h1>Cancel Appointment</h1>
-            <input
-                type="text"
-                placeholder="Enter Appointment ID"
-                value={appointmentId}
-                onChange={(e) => setAppointmentId(e.target.value)}
-            />
-            <button onClick={cancelAppointment}>Cancel Appointment</button>
+
+            <h1 className="center">תורים לביטול</h1>
+
+            {<div className="center">
+            <select id="appointmentSelector" name="appointmentSelector" onChange={(event) => handleAppointmentChoose(event.target.value)}>
+            <option value="">בחר\י תור לביטול</option>
+            {appointmentsList.map(appointment => (
+            <option key={appointment._id} value={appointment._id} >{appointment.barberId} {appointment.appointmentDate} 
+            {appointment.appointmentHour} {appointment.appointmentHaircutType} </option>
+            ))}
+            </select> 
+            </div> 
+            
+            && (<button onClick={cancelAppointment}>בטל\י תור</button>)}
+
         </div>
     );
 };

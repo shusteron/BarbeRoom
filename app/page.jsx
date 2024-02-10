@@ -26,12 +26,13 @@ export default function Home() {
         <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000}>
         </Image>
       </div>
-      <div className='text-center' >
-        <Link href="/clients/login">לקוחות</Link> 
+      <div className='text-center mb-8' >
+        <Link href="/clients/login" style={{ fontSize: '40px' }}>לקוחות</Link> 
       </div>
       <div className='text-center'>
-        <Link href="/barbers/login">ספרים</Link>
+        <Link href="/barbers/login" style={{ fontSize: '40px' }}>ספרים</Link>
       </div>
     </main>
   )
 }
+ 

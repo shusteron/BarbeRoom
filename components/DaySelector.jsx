@@ -58,7 +58,7 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
  
     return (
         <div>
-        <h1 className="center">בחר\י יום</h1>
+        <h1 className="center white-text">בחר\י יום</h1>
         <div className="center">
         {days.length > 0 &&  
         (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,

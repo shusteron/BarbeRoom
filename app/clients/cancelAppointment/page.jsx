@@ -90,7 +90,7 @@ const CancelAppointmentPage = () => {
     return (
         <div>
 
-            <h1 className="center">תורים לביטול</h1>
+            <h1 className="center white-text">תורים לביטול</h1>
 
             {<div className="center">
             <select id="appointmentSelector" name="appointmentSelector" onChange={(event) => handleAppointmentChoose(event.target.value)}>
@@ -102,7 +102,10 @@ const CancelAppointmentPage = () => {
             </select> 
             </div> 
             
-            && (<button onClick={cancelAppointment}>בטל\י תור</button>)}
+            && (
+              <div className="flex justify-center items-center mt-4">
+                <button onClick={cancelAppointment}>בטל\י תור</button>
+              </div>)}
 
         </div>
     );

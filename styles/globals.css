@@ -88,14 +88,14 @@ button:not([disabled]):hover {
   top: 0;
   background-color: rgba(238, 17, 17, 0.6); /* New color on hover */
   color: rgb(252, 251, 251); /* New color on hover */
-  
 }
 .shift-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.shift-table th, .shift-table td {
+.shift-table th,
+.shift-table td {
   border: 1px solid #0a0000;
   padding: 8px;
 }
@@ -111,4 +111,35 @@ button:not([disabled]):hover {
 
 .shift-table tr:hover {
   background-color: #010008;
+}
+
+.white-text {
+  color: white;
+}
+
+// for image of clients page:
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.content {
+  position: relative; /* Ensures positioning of the image relative to this container */
+}
+
+.image {
+  position: absolute; /* Positions the image absolutely within its container */
+  top: 0; /* Adjust top position as needed */
+  left: 0; /* Adjust left position as needed */
+  z-index: -1; /* Puts the image behind the content */
+}
+
+.image-container {
+  margin-top: 500px; /* Adjust the value as needed to lower the image */
+}
+
+.barbeRoom {
+  font-size: 100px; /* Adjust the font size as needed */
 }

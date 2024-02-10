@@ -90,7 +90,7 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
 
     return (
       <div>
-        <h1 className="center">בחר\י שעה</h1>
+        <h1 className="center white-text">בחר\י שעה</h1>
         <div className="center">
         <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
           <option value="">בחר\י שעה</option>

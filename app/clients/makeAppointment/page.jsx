@@ -84,7 +84,10 @@ const makeAppointmentsPage = () => {
         {selectedDay && (<HourSelector barberId={selectedBarber} selectedDay={selectedDay}
          selectedShiftType={selectedShiftType} onSelectHour={setSelectedHour} />)}
         {selectedHour && (<HaircutTypeSelector onSelectHaircutType={setSelectedHaircutType} />)}
-        {selectedHaircutType && (<button onClick={createAppointment}>קבע\י תור</button>)}
+        {selectedHaircutType && (
+            <div className="flex justify-center items-center mt-4">
+              <button onClick={createAppointment}>קבע\י תור</button>
+            </div>)}
       </div>
     </div>
   )

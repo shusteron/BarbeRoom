@@ -45,10 +45,10 @@ const HistoryPage = () => {
 
     <>
       {/* Creating and inizialing the history table */}
-      <h1 className='center'>הסטורית תורים</h1>
+      <h1 className='center white-text'>הסטורית תורים</h1>
       <div className="center">
         {appointments.length > 0 ? (
-          <table className="shift-table">
+          <table className="shift-table white-text">
             <thead>
               <tr>
                 <th>Barber Name</th>

@@ -45,7 +45,7 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
 
     return (
       <div>
-        <h1 className="center">בחר\י סוג תספורת</h1>
+        <h1 className="center white-text">בחר\י סוג תספורת</h1>
         <div className="center">
         <select id="haircutTypeSelector" name="haircutTypeSelector" onChange={(event) => handlehaircutTypeChoose(event.target.value)}>
           <option value="">בחר\י סוג תספורת</option>

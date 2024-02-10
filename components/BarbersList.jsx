@@ -51,12 +51,12 @@ const BarbersList = ({ onSelectBarber }) => {
   if (barbers.length === 0)
   {
     // Display a message to the user
-    return <div>רשימת ספרים לא זמינה</div>;
+    return <div className="white-text">רשימת ספרים לא זמינה</div>;
   }
 
   return ( 
     <div>
-      <h1 className="center">בחר\י ספר\ספרית</h1>
+      <h1 className="center white-text">בחר\י ספר\ספרית</h1>
       <div className="center">
       <select id="barberSelector" name="barberSelector" onChange={(event) => handleBarberChoose(event.target.value)}>
         <option value="">בחר\י ספר\ספרית</option>

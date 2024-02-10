@@ -48,7 +48,7 @@ export async function DELETE(request)
         // Handling other HTTP methods which are not relatable
         return NextResponse.json({ error: 'Method Not Allowed' });
     }
-}
+} 
 
 // Handler function to handle incoming GET requests
 export async function GET(request) 

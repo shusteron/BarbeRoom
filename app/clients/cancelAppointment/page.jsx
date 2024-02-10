@@ -7,7 +7,7 @@ import "../../../styles/globals.css"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'; 
 
 
 const CancelAppointmentPage = () => {

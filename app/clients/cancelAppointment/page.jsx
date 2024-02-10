@@ -86,7 +86,7 @@ const CancelAppointmentPage = () => {
           toast.error('התור לא נמחק, אנא נסה שוב');
       }
     };
-
+ 
     return (
         <div>
 

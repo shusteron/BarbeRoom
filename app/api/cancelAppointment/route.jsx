@@ -49,7 +49,7 @@ export async function DELETE(request)
         return NextResponse.json({ error: 'Method Not Allowed' });
     }
 } 
-
+ 
 // Handler function to handle incoming GET requests
 export async function GET(request) 
 {   

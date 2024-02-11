@@ -7,13 +7,13 @@ const Page = () => {
   return (
     <div className="center">
       <div className="content">
-        <div className="barbeRoom image-container white-text">BarbeRoom</div>
-        <div className="image-container">
-          <Image src={PageImage} alt="Logo" className="image"  />
-        </div>
+          <div className="image-container">
+            <Image src={PageImage} alt="Logo" className="image"  />
+          </div>
+          <div className="barbeRoom white-text">BarbeRoom</div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Page; 

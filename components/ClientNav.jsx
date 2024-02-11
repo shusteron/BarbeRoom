@@ -24,10 +24,7 @@ const ClientNav = () => {
         </li>
         <li style={{ marginRight: '2px' }}>
           <Link href="/clients/makeAppointment">קביעת תור</Link>
-        </li>
-        <li style={{ marginRight: '2px' }}>
-          <Link href="/clients/barbershop">על המספרה</Link>
-        </li>
+        </li> 
       </ul>
     
   )

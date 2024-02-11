@@ -16,6 +16,7 @@ import Cookies from "js-cookie"
 
 
 const Nav = () => {
+  
   const pathname = usePathname();
   const userType = calculateUserType(pathname);
   console.log(userType);

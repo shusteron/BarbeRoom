@@ -137,9 +137,19 @@ button:not([disabled]):hover {
 }
 
 .image-container {
-  margin-top: 500px; /* Adjust the value as needed to lower the image */
+  text-align: center; /* Center the image horizontally */
+  margin-top: 40px; /* Adjust the value as needed to lower the image */
 }
 
 .barbeRoom {
   font-size: 100px; /* Adjust the font size as needed */
+  text-align: center; /* Center the text horizontally */
+  margin-top: 500px; /* Add some space between the image and the text */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto auto; /* Define two rows, the first one for image and the second one for BarbeRoom */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
 }

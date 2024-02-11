@@ -20,7 +20,7 @@ const BarberNav = () => {
           <Link href="/barbers/shiftOrganizer">שיבוץ ימי עבודה</Link>
         </li>
       </ul>
-    </nav>
+    </nav> 
   )
 }
 

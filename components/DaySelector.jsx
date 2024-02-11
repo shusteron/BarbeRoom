@@ -69,7 +69,14 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
                 const currentDate = new Date();
                 return shiftDate.getDate() >= currentDate.getDate();
               }).map(day => (
-            <option key={day._id} value={day.shiftDay}>{day.shiftDay} {day.morningShift ? "Morning Shift" : "Evening Shift"}</option>
+            <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
+              "he-IL",
+              {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+              }
+            )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
           ))}
         </select>
         )}

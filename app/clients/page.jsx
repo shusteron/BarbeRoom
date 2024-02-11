@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <div className="center">
       <div className="content">
-        <div className="barbeRoom image-container white-text">BarbeRoom</div>
+        <div className="barbeRoomClient image-container white-text">BarbeRoom</div>
         <div className="image-container">
         </div>
 
@@ -17,7 +17,7 @@ const Page = () => {
         <p>054-8085030</p>
         <p>054-5605087</p>
         <p>052-3201458</p>
-        <p>052-2860930</p> 
+        <p>052-2860930</p>  
         </div>
         <div className="opening-hours">
         <h2>:שעות פתיחה</h2>

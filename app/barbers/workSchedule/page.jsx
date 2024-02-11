@@ -37,8 +37,7 @@ const WorkSchedulePage = () => {
     <div className='absolute -z-10 w-full'>
     <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />
   </div>
-    <h1 className='center'>workSchedule</h1>
-    <div className="center">
+    <div className="center white-text">
   {shifts.length > 0 ? (
     <table className="shift-table">
       <thead>

@@ -10,7 +10,7 @@ const Page = () => {
           <div className="image-container">
             <Image src={PageImage} alt="Logo" className="image"  />
           </div>
-          <div className="barbeRoom white-text">BarbeRoom</div>
+          <div className="barbeRoomBarber white-text">BarbeRoom</div>
       </div>
     </div>
   );

@@ -141,7 +141,13 @@ button:not([disabled]):hover {
   margin-top: 40px; /* Adjust the value as needed to lower the image */
 }
 
-.barbeRoom {
+.barbeRoomClient {
+  font-size: 100px; /* Adjust the font size as needed */
+  text-align: center; /* Center the text horizontally */
+  margin-top: 50px; /* Add some space between the image and the text */
+}
+
+.barbeRoomBarber {
   font-size: 100px; /* Adjust the font size as needed */
   text-align: center; /* Center the text horizontally */
   margin-top: 500px; /* Add some space between the image and the text */

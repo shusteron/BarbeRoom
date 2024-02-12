@@ -42,10 +42,10 @@ const WorkSchedulePage = () => {
     <table className="shift-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Morning Shift</th>
-          <th>Evening Shift</th>
+          <th>שם ספר/ית</th>
+          <th>תאריך</th>
+          <th>משמרת בוקר</th>
+          <th>משמרת ערב</th>
         </tr>
       </thead>
       <tbody>

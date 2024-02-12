@@ -41,10 +41,10 @@ const FutureAppointmentsPage = () => {
           <table className="shift-table white-text">
             <thead>
               <tr>
-                <th>Barber Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Haircut Style</th>
+                <th>שם ספר/ית</th>
+                <th>תאריך</th>
+                <th>שעה</th>
+                <th>סוג תספורת</th>
               </tr>
             </thead>
             <tbody>

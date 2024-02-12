@@ -46,10 +46,10 @@ export default function LoginPage() {
         } else{
             setButtonDisabled(true);
         }
-    }, [barber]);
+    }, [barber]); 
 
     return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
         <h1>{loading ? "Processing" : "Login"}</h1>
         <hr />
         

@@ -42,7 +42,7 @@ const SignupPage = () => {
           console.log(error);
           console.log(error.response);
           toast.error("signup failed");
-      
+          
           if (error.response && error.response.data && error.response.data.error) {
             const errorMessage = error.response.data.error;
             console.log(errorMessage);

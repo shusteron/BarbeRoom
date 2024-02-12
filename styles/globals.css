@@ -117,13 +117,6 @@ button:not([disabled]):hover {
   color: white;
 }
 
-// for image of clients page:
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
 
 .content {
   position: relative; /* Ensures positioning of the image relative to this container */

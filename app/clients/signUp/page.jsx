@@ -141,7 +141,7 @@ const SignupPage = () => {
             </div>
           </form>
   
-        <Link href="../barbers/login">Visit login page</Link>
+        <Link href="../clients/login">Visit login page</Link>
       </div>
     );
   };

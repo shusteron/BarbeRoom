@@ -1,5 +1,6 @@
 "use client"
-import Link from "next/link"
+
+
 // import '@styles/globals.css'
 import Image from 'next/image'
 import Background from "../../../public/images/Background.jpg"
@@ -10,9 +11,7 @@ import DaySelector from "../../../components/DaySelector"
 import HourSelector from "../../../components/HourSelector"
 import HaircutTypeSelector from "../../../components/HaircutTypeSelector"
 import React, { useState, useEffect } from 'react';
-import { NextRequest, NextResponse } from "next/server";
 import Cookies from 'js-cookie';
-import { getCookie } from "../../utils/cookies"
 import { toast } from "react-hot-toast";
  
 

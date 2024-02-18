@@ -28,22 +28,22 @@ const BarbersList = ({ onSelectBarber }) => {
 
     console.log("getting barbers");
 
-      // Fetching the list of barbers from the server
-      try 
-      {
-        fetch("/api/makeAppointment")
-        .then( (response) => response.json() )
-        .then( (data) => setBarbers(data));
-      } 
+    // Fetching the list of barbers from the server
+    try 
+    {
+      fetch("/api/makeAppointment")
+      .then( (response) => response.json() )
+      .then( (data) => setBarbers(data));
+    } 
 
-      catch (error) 
-      {
-        // Logging the error message
-        console.error("Could not fetch list of barbers", error);
+    catch (error) 
+    {
+      // Logging the error message
+      console.error("Could not fetch list of barbers", error);
 
-        // Displaying an error toast to the user
-        toast.error("שגיאה בהצגת רשימת הספרים");
-      }
+      // Displaying an error toast to the user
+      toast.error("שגיאה בהצגת רשימת הספרים");
+    }
 
   }, []); // the useEffect hook will run only once when the component is mounted
 

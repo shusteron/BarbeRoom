@@ -1,7 +1,7 @@
 import {connect} from "../../../dbConfig/dbConfig"
 import Barbers from "../../../models/barberModel"
 import Appointment from "../../../models/appointmentsModel" 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 
 // Handler function to handle incoming GET requests

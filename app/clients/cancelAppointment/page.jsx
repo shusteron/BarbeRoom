@@ -1,114 +1,105 @@
 "use client"
 
 
-import Link from "next/link"
-// import '@styles/globals.css'
-import "../../../styles/globals.css"
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
-import Cookies from 'js-cookie'; 
-
-
-const CancelAppointmentPage = () => {
-
-    // State to store the list of appointments
-    const [appointmentsList, setAppointmentsList] = useState([]); // list of appointments - initially an empty list
-
-    // State to store the selected appointmentID
-    const [appointmentID, setAppointmentID] = useState(null); // selected appointmentID - initially null
-
-    // Function to handle choosing an appointment
-    const handleAppointmentChoose = (appointmentId) => 
-    { 
-      // Log the appointment data
-      console.log("handleAppointmentChoose was called with appointmentId: " + appointmentId);
-
-      // Set the selected appointment
-      setAppointmentID(appointmentId);
-    };
-
-    useEffect(() => {
-
-      console.log("getting appointments");
-  
-        // Fetching the list of appointments from the server
-        try 
-        {
-          // Get the token from the cookies
-          const token = Cookies.get("token");
-          
-          // Fetch the list of appointments for this clientEmail from the server
-          fetch(`/api/cancelAppointment?clientToken=${token}`) // fetch the list of appointments by passing the token as a query parameter
-          .then( (response) => response.json() )
-          .then( (data) => setAppointmentsList(data));
-          
-
-          console.log("appointmentsList: ", appointmentsList);
-        } 
-  
-        catch (error) 
-        {
-          // Logging the error message
-          console.error("Could not fetch list of appointments", error);
-  
-          // Displaying an error toast to the user
-          toast.error("שגיאה בהצגת רשימת התורים");
-        }
-  
-    }, []); // the useEffect hook will run only once when the component is mounted
-
-
-    // Function to handle canceling an appointment
-    const cancelAppointment = async () => {
-
-      try 
-      {
-          // data to send to the server containing the appointment ID
-          const clientData = { appointmentID };
-
-          // Send a DELETE request to cancel the appointment
-          const response = await axios.delete('/api/cancelAppointment', { clientData });
-
-          // Log the response from the server
-          console.log(response.data);
-
-          // Display success message if the appointment is cancelled
-          toast.success('התור בוטל בהצלחה');
-      } 
-        
-      catch (error) 
-      {
-          // Log the error message
-          console.error(error); 
-
-          // Display error message if cancellation fails
-          toast.error('התור לא נמחק, אנא נסה שוב');
-      }
-    };
+import "../../../styles/globals.css" 
+import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { toast } from "react-hot-toast";
  
-    return (
-        <div>
 
-            <h1 className="center white-text">תורים לביטול</h1>
+const CancelAppointmentsPage = () => {
 
-            {<div className="center">
-            <select id="appointmentSelector" name="appointmentSelector" onChange={(event) => handleAppointmentChoose(event.target.value)}>
-            <option value="">בחר\י תור לביטול</option>
-            {appointmentsList.map(appointment => (
-            <option key={appointment._id} value={appointment._id} >{appointment.barberId} {appointment.appointmentDate} 
-            {appointment.appointmentHour} {appointment.appointmentHaircutType} </option>
-            ))}
-            </select> 
-            </div> 
-            
-            && (
-              <div className="flex justify-center items-center mt-4">
-                <button onClick={cancelAppointment}>בטל\י תור</button>
-              </div>)}
+  // State to store the list of appointments
+  const [appointments, setAppointments] = useState([]);
 
-        </div>
-    );
+  // Function to fetch appointments from the server
+  const fetchAppointments = async () => {
+
+    // Fetch the list of appointments from the server
+    try 
+    { 
+      // Get the token from the cookies
+      const token = Cookies.get("token");
+
+      // Fetch the list of appointments for this clientEmail from the server
+      const response = await axios.get("/../api/cancelAppointment", { headers: { Authorization: `Bearer ${token}`} });
+
+      // Set the list of appointments in the state variable
+      setAppointments(response.data);
+    } 
+    
+    catch (error) 
+    {
+      // Log the error message
+      console.error("Error fetching appointments:", error);
+
+      // Display an error toast to the user
+      toast.error("שגיאה בהצגת רשימת התורים");
+    }
+  };
+
+
+  // UseEffect hook to fetch the list of appointments
+  useEffect(() => {
+
+    // call the fetchAppointments function
+    fetchAppointments();
+
+  }, []);
+
+  // Function to cancel an appointment
+  const cancelAppointment = async (appointmentId) => {
+
+  // Send a DELETE request to the server to cancel the appointment  
+  try 
+  { 
+    // Get the token from the cookies
+    const token = Cookies.get("token");
+
+    // Send a DELETE request to the server with the selected appointment ID
+    await axios.delete("/../api/cancelAppointment", { headers: {Authorization: `Bearer ${token}`}, data: { appointmentId } });
+
+    // Display a success toast to the user
+    toast.success("התור בוטל בהצלחה");
+
+    // Refresh the list of appointments so that the cancelled appointment is removed from the list
+    fetchAppointments();
+  } 
+  
+  catch (error) 
+  { 
+    // Log the error message
+    console.error("Error canceling appointment:", error);
+
+    // Display an error toast to the user
+    toast.error("שגיאה בביטול התור, אנא נסה שוב");
+  }
+  
 };
 
-export default CancelAppointmentPage;
+return (
+  <div>
+    <h1 className="center white-text">תורים לביטול</h1>
+      <div className="center white-text">
+        <ul>
+          {appointments.map(appointment => (
+            <li key={appointment._id}> <div>{new Date(appointment.appointmentDate).toLocaleDateString(
+              "he-IL",
+              {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+              }
+            )} - {appointment.appointmentHour} - {appointment.barberId}</div>
+              <button onClick={() => cancelAppointment(appointment._id)}>בטל תור</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+  </div>
+);
+
+};
+
+export default CancelAppointmentsPage;

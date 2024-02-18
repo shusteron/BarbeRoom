@@ -66,7 +66,7 @@ const makeAppointmentsPage = () => {
     {
       // Display an error message if the appointment creation failed
       console.log("Error in creating appointment");
-      toast.error("שגיאה בקביעת התור");
+      toast.error("שגיאה בקביעת התור - התור הנוכחי תפוס, נא לבחור שעה אחרת");
     }
   };
 

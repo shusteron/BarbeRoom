@@ -22,10 +22,6 @@ export default function Home() {
 
   return (
     <main> 
-      <div className='absolute -z-10 w-full'>
-        <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000}>
-        </Image>
-      </div>
       <div className='text-center mb-8' >
         <Link href="/clients/login" style={{ fontSize: '40px' }}>לקוחות</Link> 
       </div>

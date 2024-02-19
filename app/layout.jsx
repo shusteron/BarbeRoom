@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import "../styles/globals.css"
 // import Nav from '@components/Nav'
 import Nav from '../components/Nav'
+import Footercomp from '../components/Footercomp'
 import { Toaster } from 'react-hot-toast'
 
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
         <Nav></Nav>
         {children}
         <Toaster />
+        <Footercomp className="footer"/>
       </body>
     </html>
   )

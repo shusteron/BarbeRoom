@@ -13,19 +13,8 @@ import {useRouter} from "next/navigation";
 import {calculateUserType} from "../app/utils/calculateUserType";
 import { usePathname } from 'next/navigation'
 import Cookies from "js-cookie"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
-import waze from '../public/images/waze.png'
 const Nav = () => {
 
-  const openWaze = () => {
-    // Specify the latitude and longitude of the destination
-    const latitude = 32.0004; // Example latitude
-    const longitude = 34.8702; // Example longitude
-    // Open Waze URL with the specified location in a new tab
-    window.open(`https://www.waze.com/ul?ll=${latitude},${longitude}&navigate=yes`, '_blank');
-  };
-  
   const pathname = usePathname();
   const userType = calculateUserType(pathname);
   console.log(userType);
@@ -81,20 +70,6 @@ const Nav = () => {
 
       {/* Displaying the logout button or not depands if there is a user signed in */}
       {token && (<button className='bg-red-500 text-white px-4 py-2 rounded-md fixed right-0 top-0 mt-4 mr-4' onClick={() => logout()}>התנתק</button>)}
-      <p>
-          <button className="email-button">
-            <FontAwesomeIcon icon={faEnvelope} />
-            <span> Mail</span>
-          </button>
-          <button className="call-button">
-            <FontAwesomeIcon icon={faPhone} />
-            <span> Call Us</span>
-          </button>
-          <button className="waze-button" onClick={openWaze}>
-          <img src={waze}/> 
-            <span> Navigate with Waze</span>
-          </button>
-        </p>
     
     </nav>
     </>

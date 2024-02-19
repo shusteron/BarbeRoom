@@ -151,3 +151,33 @@ button:not([disabled]):hover {
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
 }
+.contact-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.email-button,
+.call-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.email-button:hover,
+.call-button:hover {
+  background-color: #0056b3;
+}
+
+.email-button span,
+.call-button span {
+  margin-top: 5px;
+  font-weight: bold;
+}

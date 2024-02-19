@@ -64,16 +64,7 @@ button:not([disabled]):hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* .navToTheSide {
-  liststyletype: "none";
-  padding: 0;
-  display: "flex";
-  justifyContent: 'center';
-}
 
-.navMargin {
-  marginright: "10px";
-} */
 
 /* Styles for center elements */
 .center {

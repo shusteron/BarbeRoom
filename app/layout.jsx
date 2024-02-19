@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <Nav></Nav>
         {children}
         <Toaster />
-        <Footercomp/>
+        <Footercomp className="footer"/>
       </body>
     </html>
   )

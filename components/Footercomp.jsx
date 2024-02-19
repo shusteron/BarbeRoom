@@ -16,13 +16,13 @@ const Footercomp = () => {
   };
 
   return (
-    <footer className={styles.footer}> {/* Use className to apply the styles */}
+    <footer className="footer"> {/* Use className to apply the styles */}
       <a href='mailto:BarbeRoom@gmail.com' className={styles.button}>
         <FontAwesomeIcon icon={faEnvelope} />
         <span> Mail</span>
       </a>
 
-      <a href='tel:0523201458' className={styles.button}>
+      <a href='tel:+9720523201458' className={styles.button}>
         <FontAwesomeIcon icon={faPhone} />
         <span> Call Us</span>
       </a>

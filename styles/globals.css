@@ -1,3 +1,6 @@
+/* Global CSS */
+
+/* Tailwind CSS base, components, and utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,6 +21,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: Arial, sans-serif; /* Change font to Arial with fallback to sans-serif */
 }
 
 a:link,
@@ -30,6 +34,8 @@ button {
   text-decoration: none;
   display: inline-block;
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color change */
+  font-weight: bold; /* Make text bold */
+  border-radius: 5px; /* Add rounded corners to buttons */
 }
 
 a:hover,
@@ -44,42 +50,32 @@ button[disabled] {
   cursor: not-allowed; /* Change cursor for disabled button */
 }
 
-button:not([disabled]) {
-  background-color: rgba(0, 0, 255, 0.3);
-  color: white;
-  padding: 10px 20px; /* Adjusted padding */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color change */
-}
-
-button:not([disabled]):hover {
-  background-color: rgba(0, 0, 255, 0.6); /* New color on hover */
-  color: yellow; /* New color on hover */
-}
-
-/* styles for Nav.module.css or your CSS file */
+/* Navigation styles */
 .navbar {
   background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px; /* Add padding to the navbar */
+  border-bottom: 1px solid #ddd; /* Add a bottom border to the navbar */
 }
 
-
-
-/* Styles for center elements */
+/* Center elements */
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Top right corner button */
 .btn-top-right-corner {
   position: fixed;
   right: 0;
   top: 0;
-  background-color: rgba(238, 17, 17, 0.6); /* New color on hover */
-  color: rgb(252, 251, 251); /* New color on hover */
+  background-color: rgba(238, 17, 17, 0.6);
+  color: rgb(252, 251, 251);
+  padding: 10px; /* Add padding to the button */
+  border-radius: 0 0 0 5px; /* Add rounded corner to the top left */
 }
+
+/* Table styles */
 .shift-table {
   border-collapse: collapse;
   width: 100%;
@@ -94,11 +90,8 @@ button:not([disabled]):hover {
 .shift-table th {
   text-align: left;
   background-color: #051afb;
+  color: white; /* Change text color to white */
 }
-
-/* .shift-table tr:nth-child(even) {
-  background-color: #f40101;
-} */
 
 .shift-table tr:hover {
   background-color: #010008;
@@ -108,40 +101,40 @@ button:not([disabled]):hover {
   color: white;
 }
 
+/* Image and text container styles */
 .content {
-  position: relative; /* Ensures positioning of the image relative to this container */
+  position: relative;
 }
 
 .image {
-  position: absolute; /* Positions the image absolutely within its container */
-  top: 0; /* Adjust top position as needed */
-  left: 0; /* Adjust left position as needed */
-  z-index: -1; /* Puts the image behind the content */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .image-container {
-  text-align: center; /* Center the image horizontally */
-  margin-top: 40px; /* Adjust the value as needed to lower the image */
+  text-align: center;
+  margin-top: 40px;
 }
 
-.barbeRoomClient {
-  font-size: 100px; /* Adjust the font size as needed */
-  text-align: center; /* Center the text horizontally */
-  margin-top: 50px; /* Add some space between the image and the text */
-}
-
+/* Large text styles */
+.barbeRoomClient,
 .barbeRoomBarber {
-  font-size: 100px; /* Adjust the font size as needed */
-  text-align: center; /* Center the text horizontally */
-  margin-top: 500px; /* Add some space between the image and the text */
+  font-size: 3rem; /* Adjust the font size */
+  text-align: center;
+  margin-top: 50px;
 }
 
+/* Grid container styles */
 .grid-container {
   display: grid;
-  grid-template-rows: auto auto; /* Define two rows, the first one for image and the second one for BarbeRoom */
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  grid-template-rows: auto auto;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Contact button styles */
 .contact-buttons {
   display: flex;
   justify-content: space-around;
@@ -171,4 +164,16 @@ button:not([disabled]):hover {
 .call-button span {
   margin-top: 5px;
   font-weight: bold;
+}
+
+/* Footer styles */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0; /* Adjust padding as needed */
 }

@@ -28,9 +28,10 @@ const Footercomp = () => {
       </a>
 
       <button onClick={openWaze} className={styles.button}>
-        <FontAwesomeIcon icon={faWaze} />
+     <FontAwesomeIcon icon={faWaze} />
         <span> Waze</span>
       </button>
+      <p >© Nisim Atiya & Ron Shuster & Eliya Shlomo & Yuval Dahan, 2024.</p>
     </footer>
   )
 }

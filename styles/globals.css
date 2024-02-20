@@ -176,4 +176,9 @@ button[disabled] {
   color: #fff;
   text-align: center;
   padding: 20px 0; /* Adjust padding as needed */
+  background-color: #000000;  
+}
+
+.cancel-button {
+  margin-left: 50px; /* Adjust the value as needed */
 }

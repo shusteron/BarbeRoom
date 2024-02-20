@@ -91,8 +91,8 @@ return (
                 month: "numeric",
                 day: "numeric",
               }
-            )} - {appointment.appointmentHour} - {appointment.barberId}</div>
-              <button onClick={() => cancelAppointment(appointment._id)}>בטל תור</button>
+            )} - {appointment.appointmentHour} - {appointment.barberId.split('@')[0]} - {appointment.appointmentHaircutType}</div>
+                <button className="center white-text cancel-button" onClick={() => cancelAppointment(appointment._id)}>בטל תור</button>
             </li>
           ))}
         </ul>

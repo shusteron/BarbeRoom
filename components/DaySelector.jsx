@@ -58,29 +58,36 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
  
     return (
         <div>
-        <h1 className="center white-text">בחר\י יום</h1>
-        <div className="center">
-        {days.length > 0 &&  
-        (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,
-         days.find(day => day.shiftDay === event.target.value).morningShift)}>
-          <option value="">בחר\י יום</option>
-          {days.filter(day => {
-                const shiftDate = new Date(day.shiftDay);
-                const currentDate = new Date();
-                return shiftDate.getDate() >= currentDate.getDate();
-              }).map(day => (
-            <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
-              "he-IL",
-              {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-              }
-            )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
-          ))}
-        </select>
-        )}
-        </div>
+        {days.length > 0 ? (
+          <>  
+            <h1 className="center white-text">בחר\י יום</h1>
+            <div className="center">
+            {days.length > 0 &&  
+            (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,
+            days.find(day => day.shiftDay === event.target.value).morningShift)}>
+              <option value="">בחר\י יום</option>
+              {days.filter(day => {
+                    const shiftDate = new Date(day.shiftDay);
+                    const currentDate = new Date();
+                    return shiftDate.getDate() >= currentDate.getDate();
+                  }).map(day => (
+                <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
+                  "he-IL",
+                  {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                  }
+                )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
+              ))}
+            </select>
+            )}
+            </div>
+          </>
+        ) : (
+          <div className="center">אין משמרות זמינות לבחירה</div>
+        )
+        }  
         </div>
       );
 }

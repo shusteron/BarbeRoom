@@ -90,17 +90,24 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
 
     return (
       <div>
-        <h1 className="center white-text">בחר\י שעה</h1>
-        <div className="center">
-        <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
-          <option value="">בחר\י שעה</option>
-          {hours.map(hour => (
-          <option key={hour} value={hour} >{hour}</option>
-        ))}
-        </select>
-        </div>
+      {hours.length > 0 ? (
+        <>  
+          <h1 className="center white-text">בחר\י שעה</h1>
+          <div className="center">
+          <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
+            <option value="">בחר\י שעה</option>
+            {hours.map(hour => (
+            <option key={hour} value={hour} >{hour}</option>
+          ))}
+          </select>
+          </div>
+        </>
+      ) : (
+        <div className="center white-text">אין שעות זמינות לבחירה</div>
+      )
+      }  
       </div>
-    );
+    ); 
 }
 
 export default HourSelector 

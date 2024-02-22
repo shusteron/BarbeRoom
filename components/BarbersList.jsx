@@ -8,13 +8,16 @@ import { toast } from "react-hot-toast";
 
 
 // BarbersList component
-const BarbersList = ({ onSelectBarber }) => {
+const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
   // useState hook to store the list of barbers
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
 
   // Function to handle the selection of a barber
   const handleBarberChoose = (barberId) => {
+
+    // Resetting selection of the day, hour and haircut type when a new barber is chosen
+    resetSelection();
 
     // Log the selected barber's id
     console.log("handleBarberChoose was called with email: " + barberId);

@@ -24,6 +24,13 @@ const makeAppointmentsPage = () => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
+  // Function to reset the selection of the day, hour and haircut type
+  const resetSelection = () => {
+    setSelectedDay(null);
+    setSelectedHour(null);
+    setSelectedHaircutType(null);
+  };
+
   // Function to create an appointment
   const createAppointment = async () => { 
 
@@ -78,7 +85,7 @@ const makeAppointmentsPage = () => {
       </div>
 
       <div>
-        <BarbersList onSelectBarber={setSelectedBarber} />
+        <BarbersList onSelectBarber={setSelectedBarber} resetSelection={resetSelection} />
         {selectedBarber && (<DaySelector barberId={selectedBarber} onSelectDay={setSelectedDay} onSelectShiftType={setSelectedShiftType} />)}
         {selectedDay && (<HourSelector barberId={selectedBarber} selectedDay={selectedDay}
          selectedShiftType={selectedShiftType} onSelectHour={setSelectedHour} />)}

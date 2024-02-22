@@ -49,12 +49,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
       }
         
     }, [barberId]); // the useEffect hook will re-run whenever the barberEmail changes
-
-    if (days.length === 0)
-    {
-      // in case there are no shifts available for the selected barber - display a message to the user
-      return <div className="center">אין משמרות קיימות</div>;
-    } 
  
     return (
         <div>
@@ -85,7 +79,7 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
             </div>
           </>
         ) : (
-          <div className="center">אין משמרות זמינות לבחירה</div>
+          <div className="center white-text">אין משמרות זמינות לבחירה</div>
         )
         }  
         </div>

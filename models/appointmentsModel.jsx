@@ -4,14 +4,12 @@ import { type } from "os";
 const appointmentsSchema = new mongoose.Schema({
     clientId: 
     {
-        // type: mongoose.Schema.Types.ObjectId,
         type: String,
         ref: 'clients', // Reference to the clients model
         required: true
     },
     barberId:
     {
-        // type: mongoose.Schema.Types.ObjectId,
         type: String,
         ref: 'barbers', // Reference to the barbers model
         required: true

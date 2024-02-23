@@ -15,7 +15,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     // Function to handle the selection of a day 
     const handleDayChoose = (selectedDay, isMorning) => {
 
-      // Logging the selected day and if it's a morning shift
       console.log("Selected day:", selectedDay);
       console.log("isMorning:", isMorning);
 
@@ -41,7 +40,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     
       catch (error) 
       { 
-        // Logging the error message
         console.error("Could not fetch barber's shifts", error);
 
         // Displaying an error toast to the user

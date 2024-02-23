@@ -12,6 +12,7 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
 
     // Function to handle the selection of a hour
     const handleHourChoose = (selectedHour) => {
+
       console.log("Selected hour:", selectedHour);
 
       // Calling the onSelectHour function with the selected hour
@@ -79,7 +80,6 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
         // If there is an error, then display an error message
         catch (error) 
         { 
-          // Logging the error to the console
           console.error("Could not display barber's hours", error);
 
           // Displaying an error message to the user

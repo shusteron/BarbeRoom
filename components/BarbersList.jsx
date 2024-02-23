@@ -19,7 +19,6 @@ const BarbersList = ({ onSelectBarber, resetSelection }) => {
     // Resetting selection of the day, hour and haircut type when a new barber is chosen
     resetSelection();
 
-    // Log the selected barber's id
     console.log("handleBarberChoose was called with email: " + barberId);
 
     // Calling the onSelectBarber function with the selected barber's id
@@ -41,7 +40,6 @@ const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
     catch (error) 
     {
-      // Logging the error message
       console.error("Could not fetch list of barbers", error);
 
       // Displaying an error toast to the user

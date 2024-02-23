@@ -39,8 +39,6 @@ const makeAppointmentsPage = () => {
       // Check if all the data is available
       if (!selectedBarber || !selectedDay || !selectedHour || !selectedHaircutType) 
       {
-        // Display an error message if the data is missing
-        console.log("Missing data for appointment creation");
         console.error('Missing data for appointment creation');
         return;
       }
@@ -61,7 +59,6 @@ const makeAppointmentsPage = () => {
       // send the appointment to the server
       const appointmentDataFromServer = await axios.post("/../api/makeAppointment", appointmentData);
 
-      // Log the appointment data from the server
       console.log(appointmentDataFromServer.data);
       
       // Display a success message to the user if the appointment was created successfully

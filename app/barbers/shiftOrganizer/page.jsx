@@ -78,7 +78,7 @@ const RegisterShiftPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-      <h1>{formik.isSubmitting ? 'Processing' : 'Register Shift'}</h1>
+      <h1>{formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרות'}</h1>
       <hr />
 
       <form onSubmit={formik.handleSubmit}>
@@ -88,7 +88,7 @@ const RegisterShiftPage = () => {
           {formik.touched.shiftDay && formik.errors.shiftDay && (
             <p className="text-red-500">{formik.errors.shiftDay}</p>
           )}
-          <label htmlFor="shiftDay">Shift Day</label>
+          <label htmlFor="shiftDay">תאריך</label>
           <DatePicker
             id="shiftDay"
             selected={formik.values.shiftDay}
@@ -109,7 +109,7 @@ const RegisterShiftPage = () => {
       checked={formik.values.shift === 'morning'}
       onChange={() => formik.setFieldValue('shift', 'morning')}
     />
-    Morning Shift
+    משמרת בוקר
   </label>
 </div>
 <div className="mb-4">
@@ -120,20 +120,21 @@ const RegisterShiftPage = () => {
       checked={formik.values.shift === 'evening'}
       onChange={() => formik.setFieldValue('shift', 'evening')}
     />
-    Evening Shift
+    משמרת ערב
   </label>
 </div>
 
-          <div className="flex items-center justify-center">
-  <button
-    type="submit"
-    className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
-    disabled={
-      formik.isSubmitting ||
-      (!formik.values.shiftDay || (!formik.values.morningShift && !formik.values.eveningShift))
-    }
-  >
-    {formik.isSubmitting ? 'Processing' : 'Register Shift'}
+  <div className="flex items-center justify-center">
+    <button
+          type="submit"
+          className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+          disabled={
+            formik.isSubmitting ||
+            !formik.values.shift ||
+            !formik.values.shiftDay
+          }
+    >
+      {formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרות'}
   </button>
 </div>
 

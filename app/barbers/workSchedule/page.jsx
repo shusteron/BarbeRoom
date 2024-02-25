@@ -17,12 +17,14 @@ const WorkSchedulePage = () => {
           throw new Error('Failed to fetch data');
         }
         const data = response.data;
-         // Ensure data is an array before setting it in state
-      if (Array.isArray(data)) {
-        setShifts(data);
-      } else {
-        throw new Error('Data is not in the expected format');
-      }
+        // Ensure data is an array before sorting and setting it in state
+        if (Array.isArray(data)) {
+          // Sort shifts by shiftDay in ascending order
+          const sortedShifts = data.sort((a, b) => new Date(a.shiftDay) - new Date(b.shiftDay));
+          setShifts(sortedShifts);
+        } else {
+          throw new Error('Data is not in the expected format');
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error: set shifts to an empty array or handle it according to your application logic
@@ -31,6 +33,7 @@ const WorkSchedulePage = () => {
     }
     fetchData();
   }, []);
+  
 
   return (
     <>
@@ -53,14 +56,14 @@ const WorkSchedulePage = () => {
           <tr key={shift._id}>
             <td>{shift.barberMail.split('@')[0]}</td>
             <td>{new Date(shift.shiftDay).toDateString()}</td>
-            <td>{shift.morningShift ? 'Yes' : 'No'}</td>
-            <td>{shift.eveningShift ? 'Yes' : 'No'}</td>
+            <td>{shift.morningShift ? 'כן' : 'לא'}</td>
+            <td>{shift.eveningShift ? 'כן' : 'לא'}</td>
           </tr>
         ))}
       </tbody>
     </table>
   ) : (
-    <p>No shifts available</p>
+    <p>אין משמרות זמינות</p>
   )}
 </div>
 

@@ -35,7 +35,8 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
       {
         fetch(`/api/workSchedule?barberId=${barberId}`) // fetch the barber's shifts by passing the barber's id as a query parameter
         .then( (response) => response.json() )
-        .then( (data) => setDays(data));
+        .then( (data) => data.sort((first, second) => new Date(first.shiftDay) - new Date(second.shiftDay)) )
+        .then( (sortedDays) => setDays(sortedDays)); 
       } 
     
       catch (error) 

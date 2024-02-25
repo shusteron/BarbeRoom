@@ -23,7 +23,7 @@ const MakeAppointmentsPage = () => {
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
   // Function to reset the selection of the day, hour and haircut type
-  const resetSelection = () => {
+  const resetSelection = () => { 
     setSelectedDay(null);
     setSelectedHour(null);
     setSelectedHaircutType(null);

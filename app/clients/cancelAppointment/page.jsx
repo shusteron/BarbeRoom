@@ -25,8 +25,11 @@ const CancelAppointmentsPage = () => {
       // Fetch the list of appointments for this clientEmail from the server
       const response = await axios.get("/../api/cancelAppointment", { headers: { Authorization: `Bearer ${token}`} });
 
+      // Sort the appointments by date in ascending order
+      const sortedAppointments = response.data.sort((first, second) => new Date(first.appointmentDate) - new Date(second.appointmentDate));
+
       // Set the list of appointments in the state variable
-      setAppointments(response.data);
+      setAppointments(sortedAppointments);
     } 
     
     catch (error) 
@@ -80,6 +83,9 @@ return (
   <div>
     <h1 className="center white-text">תורים לביטול</h1>
       <div className="center white-text">
+        {appointments.length === 0 ? (
+          <p>אין תורים לביטול כרגע</p>
+        ) : (
         <ul>
           {appointments.map(appointment => (
             <li key={appointment._id}> <div>{new Date(appointment.appointmentDate).toLocaleDateString(
@@ -94,6 +100,7 @@ return (
             </li>
           ))}
         </ul>
+        )}
       </div>
   </div>
 );

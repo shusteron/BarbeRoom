@@ -59,7 +59,7 @@ const FutureAppointmentsPage = () => {
             </tbody>
           </table>
         ) : (
-          <p>No future appointments available</p>
+          <p>אין תורים עתידיים</p>
         )}
       </div>
     </>

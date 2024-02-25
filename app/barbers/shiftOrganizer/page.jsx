@@ -21,6 +21,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 const RegisterShiftPage = () => {
+  const isMonday = (date) => {
+    return date.getDay() != 1; // Monday is represented by 1 in JavaScript's getDay() function
+  };
+
+  const disableMonday = (date) => {
+    return isMonday(date);
+  };
+
+
   const [shiftDay, setShiftDay] = useState(new Date());
   const [morningShift, setMorningShift] = useState(false);
   const [eveningShift, setEveningShift] = useState(false);
@@ -69,7 +78,7 @@ const RegisterShiftPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-      <h1>{formik.isSubmitting ? 'Processing' : 'Register Shift'}</h1>
+      <h1>{formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרות'}</h1>
       <hr />
 
       <form onSubmit={formik.handleSubmit}>
@@ -79,7 +88,7 @@ const RegisterShiftPage = () => {
           {formik.touched.shiftDay && formik.errors.shiftDay && (
             <p className="text-red-500">{formik.errors.shiftDay}</p>
           )}
-          <label htmlFor="shiftDay">Shift Day</label>
+          <label htmlFor="shiftDay">תאריך</label>
           <DatePicker
             id="shiftDay"
             selected={formik.values.shiftDay}
@@ -87,58 +96,49 @@ const RegisterShiftPage = () => {
             className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
             minDate={new Date()} // Set minimum date to the current day
             dateFormat="yyyy-MM-dd"
+            filterDate={disableMonday} // Disable Mondays
 />
         </div>
 
-        {/* Morning Shift */}
-          <div className="mb-4">
-            {formik.touched.morningShift && formik.errors.morningShift && (
-              <p className="text-red-500">{formik.errors.morningShift}</p>
-            )}
-            <label>
-              <input
-                type="checkbox"
-                checked={formik.values.morningShift}
-                onChange={(e) => formik.setFieldValue("morningShift", e.target.checked)}
-                name="morningShift"
-              />
-              Morning Shift
-            </label>
-          </div>
+        {/* Select Shift */}
+<div className="mb-4">
+  <label>
+    <input
+      type="radio"
+      value="morning"
+      checked={formik.values.shift === 'morning'}
+      onChange={() => formik.setFieldValue('shift', 'morning')}
+    />
+    משמרת בוקר
+  </label>
+</div>
+<div className="mb-4">
+  <label>
+    <input
+      type="radio"
+      value="evening"
+      checked={formik.values.shift === 'evening'}
+      onChange={() => formik.setFieldValue('shift', 'evening')}
+    />
+    משמרת ערב
+  </label>
+</div>
 
-          {/* Evening Shift */}
-          <div className="mb-4">
-            {formik.touched.eveningShift && formik.errors.eveningShift && (
-              <p className="text-red-500">{formik.errors.eveningShift}</p>
-            )}
-            <label>
-              <input
-                type="checkbox"
-                checked={formik.values.eveningShift}
-                onChange={(e) => formik.setFieldValue("eveningShift", e.target.checked)}
-                name="eveningShift"
-              />
-              Evening Shift
-            </label>
-          </div> 
-
-          <div className="flex items-center justify-center">
-  <button
-    type="submit"
-    className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
-    disabled={
-      formik.isSubmitting ||
-      (!formik.values.shiftDay || (!formik.values.morningShift && !formik.values.eveningShift))
-    }
-  >
-    {formik.isSubmitting ? 'Processing' : 'Register Shift'}
+  <div className="flex items-center justify-center">
+    <button
+          type="submit"
+          className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+          disabled={
+            formik.isSubmitting ||
+            !formik.values.shift ||
+            !formik.values.shiftDay
+          }
+    >
+      {formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרות'}
   </button>
 </div>
 
       </form>
-      <div className='absolute -z-10 w-full'>
-        <Image src={Background} alt="Background Image" className="w-full" width={1000} height={1000} />
-      </div>
     </div>
   );
 };

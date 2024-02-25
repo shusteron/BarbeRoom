@@ -12,6 +12,7 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
 
     // Function to handle the selection of a hour
     const handleHourChoose = (selectedHour) => {
+
       console.log("Selected hour:", selectedHour);
 
       // Calling the onSelectHour function with the selected hour
@@ -79,7 +80,6 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
         // If there is an error, then display an error message
         catch (error) 
         { 
-          // Logging the error to the console
           console.error("Could not display barber's hours", error);
 
           // Displaying an error message to the user
@@ -90,17 +90,24 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
 
     return (
       <div>
-        <h1 className="center white-text">בחר\י שעה</h1>
-        <div className="center">
-        <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
-          <option value="">בחר\י שעה</option>
-          {hours.map(hour => (
-          <option key={hour} value={hour} >{hour}</option>
-        ))}
-        </select>
-        </div>
+      {hours.length > 0 ? (
+        <>  
+          <h1 className="center white-text">בחר\י שעה</h1>
+          <div className="center">
+          <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
+            <option value="">בחר\י שעה</option>
+            {hours.map(hour => (
+            <option key={hour} value={hour} >{hour}</option>
+          ))}
+          </select>
+          </div>
+        </>
+      ) : (
+        <div className="center white-text">אין שעות זמינות לבחירה</div>
+      )
+      }  
       </div>
-    );
+    ); 
 }
 
 export default HourSelector 

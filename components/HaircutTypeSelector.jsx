@@ -13,7 +13,6 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
     // Function to handle the selection of a haircut type
     const handlehaircutTypeChoose = (selectedHaircutType) => {
 
-      // Logging the selected haircut type
       console.log("Selected Haircut Type:", selectedHaircutType);
 
       // Calling the onSelectHaircutType function with the selected haircut type
@@ -28,13 +27,12 @@ const HaircutTypeSelector = ({ onSelectHaircutType }) => {
         // Fetching the list of haircut types from the server
         const haircutTypeOptions = ['תספורת גברים', 'תספורת נשים', 'פן', 'צבע', 'החלקה'];
 
-        // Logging the list of haircut types
+        // Setting the list of haircut types in the state
         setHaircutType(haircutTypeOptions);
       } 
     
       catch (error) 
       {
-        // Logging the error message
         console.log("Could not display barber's haircut Types", error);
         
         // Displaying an error toast to the user

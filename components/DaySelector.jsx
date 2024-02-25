@@ -15,7 +15,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     // Function to handle the selection of a day 
     const handleDayChoose = (selectedDay, isMorning) => {
 
-      // Logging the selected day and if it's a morning shift
       console.log("Selected day:", selectedDay);
       console.log("isMorning:", isMorning);
 
@@ -41,7 +40,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     
       catch (error) 
       { 
-        // Logging the error message
         console.error("Could not fetch barber's shifts", error);
 
         // Displaying an error toast to the user
@@ -49,38 +47,39 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
       }
         
     }, [barberId]); // the useEffect hook will re-run whenever the barberEmail changes
-
-    if (days.length === 0)
-    {
-      // in case there are no shifts available for the selected barber - display a message to the user
-      return <div className="center">אין משמרות קיימות</div>;
-    } 
  
     return (
         <div>
-        <h1 className="center white-text">בחר\י יום</h1>
-        <div className="center">
-        {days.length > 0 &&  
-        (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,
-         days.find(day => day.shiftDay === event.target.value).morningShift)}>
-          <option value="">בחר\י יום</option>
-          {days.filter(day => {
-                const shiftDate = new Date(day.shiftDay);
-                const currentDate = new Date();
-                return shiftDate.getDate() >= currentDate.getDate();
-              }).map(day => (
-            <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
-              "he-IL",
-              {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-              }
-            )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
-          ))}
-        </select>
-        )}
-        </div>
+        {days.length > 0 ? (
+          <>  
+            <h1 className="center white-text">בחר\י יום</h1>
+            <div className="center">
+            {days.length > 0 &&  
+            (<select id="daySelector" name="daySelector" onChange={(event) => handleDayChoose(event.target.value,
+            days.find(day => day.shiftDay === event.target.value).morningShift)}>
+              <option value="">בחר\י יום</option>
+              {days.filter(day => {
+                    const shiftDate = new Date(day.shiftDay);
+                    const currentDate = new Date();
+                    return shiftDate.getDate() >= currentDate.getDate();
+                  }).map(day => (
+                <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
+                  "he-IL",
+                  {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                  }
+                )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
+              ))}
+            </select>
+            )}
+            </div>
+          </>
+        ) : (
+          <div className="center white-text">אין משמרות זמינות לבחירה</div>
+        )
+        }  
         </div>
       );
 }

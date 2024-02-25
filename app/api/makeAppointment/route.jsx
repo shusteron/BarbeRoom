@@ -19,7 +19,6 @@ export async function GET(request)
         // Finding all barbers from the database
         const barbers = await Barbers.find({});
 
-        // Logging the list of barbers
         console.log('Barbers:', barbers);
 
         // Sending a successful response with the list of barbers
@@ -28,7 +27,6 @@ export async function GET(request)
        
       catch (error) 
       {
-        // Logging the error message
         console.log("Failed to fetch barbers from DB due to: " + error);
 
         // Sending an error response
@@ -38,7 +36,6 @@ export async function GET(request)
     
     else 
     {
-      // Logging the error message
       console.log("Not a GET request");
 
       // Handling other HTTP methods which are not relatable  

@@ -31,7 +31,6 @@ const CancelAppointmentsPage = () => {
     
     catch (error) 
     {
-      // Log the error message
       console.error("Error fetching appointments:", error);
 
       // Display an error toast to the user
@@ -69,7 +68,6 @@ const CancelAppointmentsPage = () => {
   
   catch (error) 
   { 
-    // Log the error message
     console.error("Error canceling appointment:", error);
 
     // Display an error toast to the user

@@ -22,6 +22,13 @@ const MakeAppointmentsPage = () => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedHaircutType, setSelectedHaircutType] = useState(null);
 
+  // Function to reset the selection of the day, hour and haircut type
+  const resetSelection = () => {
+    setSelectedDay(null);
+    setSelectedHour(null);
+    setSelectedHaircutType(null);
+  };
+
   // Function to create an appointment
   const createAppointment = async () => { 
 
@@ -30,8 +37,6 @@ const MakeAppointmentsPage = () => {
       // Check if all the data is available
       if (!selectedBarber || !selectedDay || !selectedHour || !selectedHaircutType) 
       {
-        // Display an error message if the data is missing
-        console.log("Missing data for appointment creation");
         console.error('Missing data for appointment creation');
         return;
       }
@@ -52,7 +57,6 @@ const MakeAppointmentsPage = () => {
       // send the appointment to the server
       const appointmentDataFromServer = await axios.post("/../api/makeAppointment", appointmentData);
 
-      // Log the appointment data from the server
       console.log(appointmentDataFromServer.data);
       
       // Display a success message to the user if the appointment was created successfully
@@ -76,7 +80,7 @@ const MakeAppointmentsPage = () => {
       </div>
 
       <div>
-        <BarbersList onSelectBarber={setSelectedBarber} />
+        <BarbersList onSelectBarber={setSelectedBarber} resetSelection={resetSelection} />
         {selectedBarber && (<DaySelector barberId={selectedBarber} onSelectDay={setSelectedDay} onSelectShiftType={setSelectedShiftType} />)}
         {selectedDay && (<HourSelector barberId={selectedBarber} selectedDay={selectedDay}
          selectedShiftType={selectedShiftType} onSelectHour={setSelectedHour} />)}

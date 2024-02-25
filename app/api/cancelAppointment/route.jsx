@@ -29,7 +29,6 @@ export async function GET(request)
       // Find the appointments that are scheduled for the future for this client
       const appointments = await Appointment.find({ clientId, appointmentDate: { $gte: currentDateTime } });
 
-      // Logging the list of appointments
       console.log('Appointments:', appointments);
 
       // Sending a successful response with the list of appointments
@@ -38,7 +37,6 @@ export async function GET(request)
       
     catch (error) 
     {
-      // Logging the error message
       console.log("Failed to fetch appointments from DB due to: " + error);
 
       // Sending an error response
@@ -81,7 +79,6 @@ export async function DELETE(request)
     
     catch (error) 
     {
-      // Logging the error message
       console.log("Failed to cancel appointment due to: " + error);
 
       // Sending an error response if the appointment could not be canceled

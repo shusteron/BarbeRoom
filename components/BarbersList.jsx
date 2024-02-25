@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 
 
 // BarbersList component
-const BarbersList = ({ onSelectBarber }) => {
+const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
   // useState hook to store the list of barbers
   const [barbers, setBarbers] = useState([]); // list of barbers - initially an empty list
@@ -16,7 +16,9 @@ const BarbersList = ({ onSelectBarber }) => {
   // Function to handle the selection of a barber
   const handleBarberChoose = (barberId) => {
 
-    // Log the selected barber's id
+    // Resetting selection of the day, hour and haircut type when a new barber is chosen
+    resetSelection();
+
     console.log("handleBarberChoose was called with email: " + barberId);
 
     // Calling the onSelectBarber function with the selected barber's id
@@ -38,7 +40,6 @@ const BarbersList = ({ onSelectBarber }) => {
 
     catch (error) 
     {
-      // Logging the error message
       console.error("Could not fetch list of barbers", error);
 
       // Displaying an error toast to the user

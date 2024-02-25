@@ -1,0 +1,75 @@
+/* ImageSlider.module.css */
+
+.container {
+    width: 70%;
+    height: 500px; /* Adjust the height as per your requirement */
+    margin: auto;
+    margin-top: 100px;  
+    border-radius: 15px;
+  }
+  
+  @keyframes display {
+    0% {
+      transform: translateX(200px);
+      opacity: 0;
+    }
+    10% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    20% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+  }
+  
+  .slider {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .slider > img {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    animation: display 40s infinite;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .container {
+      height: 400px;
+    }
+  
+    .slider > img {
+      max-width: 650px;
+    }
+  }
+  
+/* 
+  .slider > img:nth-child(1) {
+    animation-delay: 2s;
+  } */
+  .slider > img:nth-child(2) {
+    animation-delay: 8s;
+  }
+  .slider > img:nth-child(3) {
+    animation-delay: 16s;
+  }
+  .slider > img:nth-child(4) {
+    animation-delay: 24s;
+  }
+  .slider > img:nth-child(5) {
+    animation-delay: 32s;
+  }
+  

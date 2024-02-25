@@ -1,6 +1,4 @@
 "use client"
-
-
 // import '@styles/globals.css'
 import Image from 'next/image'
 import Background from "../../../public/images/Background.jpg"
@@ -15,7 +13,7 @@ import Cookies from 'js-cookie';
 import { toast } from "react-hot-toast";
  
 
-const makeAppointmentsPage = () => {
+const MakeAppointmentsPage = () => {
 
   // useStates to store the selected barber, day, hour and haircut type
   const [selectedBarber, setSelectedBarber] = useState(null);
@@ -92,4 +90,4 @@ const makeAppointmentsPage = () => {
   )
 }
 
-export default makeAppointmentsPage 
+export default MakeAppointmentsPage 

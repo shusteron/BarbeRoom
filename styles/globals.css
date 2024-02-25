@@ -1,5 +1,5 @@
 /* Global CSS */
-
+@import "~react-image-gallery/styles/css/image-gallery.css";
 /* Tailwind CSS base, components, and utilities */
 @tailwind base;
 @tailwind components;
@@ -9,6 +9,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-color: #FE7A36
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,7 +36,7 @@ button {
   display: inline-block;
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color change */
   font-weight: bold; /* Make text bold */
-  border-radius: 5px; /* Add rounded corners to buttons */
+  border-radius: 20px; /* Add rounded corners to buttons */
 }
 
 a:hover,
@@ -181,4 +182,9 @@ button[disabled] {
 
 .cancel-button {
   margin-left: 50px; /* Adjust the value as needed */
+}
+
+input {
+  padding: 10px; /* Add padding to the input */
+  border-radius: 20px; /* Add rounded corners to the input */
 }

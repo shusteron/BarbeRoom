@@ -48,7 +48,7 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
       }
         
     }, [barberId]); // the useEffect hook will re-run whenever the barberEmail changes
- 
+
     return (
         <div>
         {days.length > 0 ? (
@@ -62,7 +62,7 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
               {days.filter(day => {
                     const shiftDate = new Date(day.shiftDay);
                     const currentDate = new Date();
-                    return shiftDate.getDate() >= currentDate.getDate();
+                    return shiftDate >= currentDate;
                   }).map(day => (
                 <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
                   "he-IL",

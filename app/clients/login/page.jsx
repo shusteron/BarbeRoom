@@ -27,7 +27,7 @@ export default function LoginPage() {
             router.push("/clients");
         } catch (error) {
             console.log("Login failed", error.message);
-            toast.error(error.message);
+            toast.error("שם משתמש או סיסמא לא נכונים, אנא נסה שוב");
 
             // Handle incorrect email or password fields.
             if (error.response && error.response.status === 400) {

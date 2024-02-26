@@ -42,7 +42,7 @@ const RegisterShiftPage = () => {
         toast.success('משמרת נקבעה בהצלחה');
       } catch (error) {
         console.error('Shift registration error:', error);
-        toast.error('הרשמה למשמרת נכשלה');
+        toast.error('הרשמה למשמרת נכשלה, את/ה רשום למשמרת באותו יום');
       }
     },
   });

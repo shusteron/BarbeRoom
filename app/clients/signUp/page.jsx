@@ -66,8 +66,8 @@ const SignupPage = () => {
     });
   
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-        <h1>{loading ? "עוד רגע ואתם נכנסים" : "הרשמה"}</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text" style={{ direction: 'rtl' }}>
+      <h1>{loading ? "עוד רגע ואתם נכנסים" : "הרשמה"}</h1>
         <hr />
   
         <form onSubmit={formik.handleSubmit}>
@@ -77,7 +77,7 @@ const SignupPage = () => {
               id="name"
               type="text"
               {...formik.getFieldProps("name")}
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black text-align-right w-full"
             />
             {formik.touched.name && formik.errors.name && <p className="text-red-500">{formik.errors.name}</p>}
           </div>
@@ -88,7 +88,7 @@ const SignupPage = () => {
               id="lastName"
               type="text"
               {...formik.getFieldProps("lastName")}
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black text-align-right w-full"
             />
             {formik.touched.lastName && formik.errors.lastName && (
               <p className="text-red-500">{formik.errors.lastName}</p>
@@ -101,7 +101,7 @@ const SignupPage = () => {
               id="phoneNumber"
               type="tel"
               {...formik.getFieldProps("phoneNumber")}
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black text-align-right w-full"
             />
             {formik.touched.phoneNumber && formik.errors.phoneNumber && <p className="text-red-500">{formik.errors.phoneNumber}</p>}
           </div>
@@ -112,7 +112,7 @@ const SignupPage = () => {
               id="email"
               type="text"
               {...formik.getFieldProps("email")}
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black text-align-right w-full"
             />
             {formik.touched.email && formik.errors.email && <p className="text-red-500">{formik.errors.email}</p>}
           </div>
@@ -123,7 +123,7 @@ const SignupPage = () => {
               id="password"
               type="password"
               {...formik.getFieldProps("password")}
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black text-align-right w-full"
             />
             {formik.touched.password && formik.errors.password && (
               <p className="text-red-500">{formik.errors.password}</p>

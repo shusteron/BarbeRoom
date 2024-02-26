@@ -188,3 +188,8 @@ input {
   padding: 10px; /* Add padding to the input */
   border-radius: 20px; /* Add rounded corners to the input */
 }
+
+.label-right {
+  display: flex;
+  justify-content: center;
+}

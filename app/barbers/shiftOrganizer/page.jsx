@@ -42,7 +42,7 @@ const RegisterShiftPage = () => {
         toast.success('משמרת נקבעה בהצלחה');
       } catch (error) {
         console.error('Shift registration error:', error);
-        toast.error('הרשמה למשמרת נכשלה, את/ה רשום למשמרת באותו יום');
+        toast.error('הרשמה למשמרת נכשלה, את/ה רשום למשמרת באותו');
       }
     },
   });
@@ -54,12 +54,12 @@ const RegisterShiftPage = () => {
 
       <form onSubmit={formik.handleSubmit}>
         {/* Shift Day */}
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col">
           {formik.touched.shiftDay && formik.errors.shiftDay && (
             <p className="text-red-500">{formik.errors.shiftDay}</p>
           )}
-          <label htmlFor="shiftDay">תאריך</label>
-          <DatePicker
+            <label htmlFor="shiftDay" className="label-right">תאריך</label>
+            <DatePicker
             id="shiftDay"
             selected={formik.values.shiftDay}
             onChange={(date) => formik.setFieldValue('shiftDay', date)}
@@ -71,26 +71,28 @@ const RegisterShiftPage = () => {
         </div>
 
         {/* Select Shift */}
-        <div className="mb-4">
-          <label>
+        <div className="mb-4 flex items-center">
+          <label htmlFor="morningShift" className="mr-2">
+            משמרת בוקר
             <input
               type="radio"
+              id="morningShift"
               value="morning"
               checked={selectedShift === 'morning'}
               onChange={() => setSelectedShift('morning')}
+              className="ml-2"
             />
-            משמרת בוקר
           </label>
-        </div>
-        <div className="mb-4">
-          <label>
+          <label htmlFor="eveningShift" className="mr-2">
+            משמרת ערב
             <input
               type="radio"
+              id="eveningShift"
               value="evening"
               checked={selectedShift === 'evening'}
               onChange={() => setSelectedShift('evening')}
+              className="ml-2"
             />
-            משמרת ערב
           </label>
         </div>
 
@@ -102,7 +104,7 @@ const RegisterShiftPage = () => {
               formik.isSubmitting || !formik.values.shiftDay || !selectedShift
             }
           >
-            {formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרות'}
+            {formik.isSubmitting ? 'מעבד' : 'הרשמה למשמרת'}
           </button>
         </div>
       </form>

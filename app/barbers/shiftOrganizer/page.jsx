@@ -9,6 +9,13 @@ import { toast } from 'react-hot-toast';
 import Cookies from 'js-cookie';
 
 const RegisterShiftPage = () => {
+  const isMonday = (date) => {
+    return date.getDay() != 1 && date.getDay() != 5 && date.getDay() != 6; 
+  };
+
+  const disableMonday = (date) => {
+    return isMonday(date);
+  };
   const [selectedShift, setSelectedShift] = useState('');
 
   const formik = useFormik({
@@ -59,6 +66,7 @@ const RegisterShiftPage = () => {
             className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
             minDate={new Date()} // Set minimum date to the current day
             dateFormat="yyyy-MM-dd"
+            filterDate={disableMonday}
           />
         </div>
 

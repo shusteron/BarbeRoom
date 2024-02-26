@@ -21,7 +21,9 @@ const Page = () => {
         </div>
         <div className="opening-hours">
         <h2>:שעות פתיחה</h2>
-        <p>ראשון - שישי 21:00 - 08:00</p>
+        <p>ראשון 21:00 - 08:00</p>
+        <p>שלישי - חמישי 21:00 - 08:00</p>
+
         </div>
         <div className="navigation-link">
         {/* <Link href="https://waze.com/ul?q=BarbeRoom%20Barbershop%2C%20Handasa%20100%2C%20Ariel">

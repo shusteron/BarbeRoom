@@ -22,7 +22,7 @@ export default function LoginPage() {
             setLoading(true);
             const response = await axios.post("/api/users/clients/login", client);
             console.log("Login success", response.data);
-            toast.success("Login success");
+            toast.success("נכנסת בהצלחה");
             localStorage.setItem("userType", "client");
             router.push("/clients");
         } catch (error) {
@@ -52,10 +52,10 @@ export default function LoginPage() {
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-        <h1>{loading ? "Processing" : "Login"}</h1>
+        <h1>{loading ? "עוד רגע ואתם נכנסים" : "כניסה"}</h1>
         <hr />
         
-        <label htmlFor="email">email</label>
+        <label htmlFor="email">אימייל</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="email"
@@ -64,7 +64,7 @@ export default function LoginPage() {
             onChange={(e) => setUser({...client, email: e.target.value})}
             placeholder="email"
             />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">סיסמה</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="password"
@@ -75,8 +75,8 @@ export default function LoginPage() {
             />
             <button
             onClick={onLogin}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
-            <Link href="../clients/signUp">Signup NOW!</Link>
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">התחבר/י</button>
+            <Link href="../clients/signUp">עדיין לא מנויים? הירשמו עכשיו</Link>
         </div>
     )
 

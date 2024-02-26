@@ -18,9 +18,12 @@ const FutureAppointmentsPage = () => {
           throw new Error('Failed to fetch data');
         }
 
-        const data = response.data;
+        let data = response.data;
 
+        // Ensure data is an array before sorting and setting it in state
         if (Array.isArray(data)) {
+          // Sort appointments by appointmentDate in ascending order
+          data = data.sort((a, b) => new Date(a.appointmentDate) - new Date(b.appointmentDate));
           setAppointments(data);
         } else {
           throw new Error('Data is not in the expected format');

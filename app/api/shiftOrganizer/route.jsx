@@ -24,10 +24,9 @@ export async function POST(req) {
     //check if user already exists
     const isexistsshiftmorning = await Shift.findOne({shiftDay,morningShift})
     const isexistsshiftevening = await Shift.findOne({shiftDay,eveningShift})
-    const isexistsshiftcfula = await Shift.findOne({shiftDay,morningShift,eveningShift})
 
 
-    if(isexistsshiftmorning||isexistsshiftevening||isexistsshiftcfula){
+    if(isexistsshiftmorning||isexistsshiftevening){
         console.log("shift already scheduled")
         return NextResponse.json({error: "shift already scheduled"}, {status: 400})
     }

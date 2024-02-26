@@ -50,10 +50,10 @@ export default function LoginPage() {
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-        <h1>{loading ? "Processing" : "Login"}</h1>
+        <h1>{loading ? "עוד רגע ואתם נכנסים" : "כניסה"}</h1>
         <hr />
         
-        <label htmlFor="email">email</label>
+        <label htmlFor="email">אימייל</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="email"
@@ -62,7 +62,7 @@ export default function LoginPage() {
             onChange={(e) => setBarber({...barber, email: e.target.value})}
             placeholder="email"
             />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">סיסמא</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="password"
@@ -74,8 +74,8 @@ export default function LoginPage() {
             <button
             onClick={onLogin}
             disabled={buttonDisabled}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
-            <Link href="../barbers/signUp" >Visit Signup page</Link>
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">התחבר/י</button>
+            <Link href="../barbers/signUp" >הצטרף עכשיו לצוות הספרים</Link>
         </div>
     )
 

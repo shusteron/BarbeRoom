@@ -19,10 +19,10 @@ const SignupPage = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      lastName: Yup.string().required("Last Name is required"),
-      email: Yup.string().email("Invalid email address").required("Email is required").matches(/@/, 'Email must contain "@"'),
-      password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+      name: Yup.string().required("שדה חובה"),
+      lastName: Yup.string().required("שדה חובה"),
+      email: Yup.string().email("מייל לא תקין").required("שדה חובה").matches(/@/, 'איימל חייב להכיל "@"'),
+      password: Yup.string().min(6, "סיסמא חייבת להכיל 6 תוים לפחות").required("שדה חובה"),
     }),
     onSubmit: async (values) => {
       try {
@@ -30,21 +30,21 @@ const SignupPage = () => {
         const response = await axios.post("/api/users/barbers/signup", values);
         console.log("Signup success", response.data);
         // Show a success toast message
-        toast.success("Signup successful!");
+        toast.success("הרשמה בוצעה בהצלחה");
         router.push("/barbers/login");
         
 
       } catch (error) {
         console.log("Error:",error);
         console.log(error.response);
-        toast.error("signup failed");
+        toast.error("הרשמה נכשלה");
     
         if (error.response && error.response.data && error.response.data.error) {
           const errorMessage = error.response.data.error;
           console.log(errorMessage);
           // Check if the error message indicates that the email already exists
           if (errorMessage.includes("email already exists")) {
-            toast.error("Email already exists. Please use a different email.");
+            toast.error("מייל כבר קיים, בבקשה הכנס מייל אחר");
           } else {
             // Handle other error messages
             toast.error(errorMessage);
@@ -63,12 +63,12 @@ const SignupPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 white-text">
-      <h1>{loading ? "Processing" : "Signup"}</h1>
+      <h1>{loading ? "עוד רגע ואתם נכנסים" : "הרשמה"}</h1>
       <hr />
 
       <form onSubmit={formik.handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">שם פרטי</label>
           <input
             id="name"
             type="text"
@@ -79,7 +79,7 @@ const SignupPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">שם משפחה</label>
           <input
             id="lastName"
             type="text"
@@ -92,7 +92,7 @@ const SignupPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">אימייל</label>
           <input
             id="email"
             type="text"
@@ -103,7 +103,7 @@ const SignupPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">סיסמה</label>
           <input
             id="password"
             type="password"
@@ -121,12 +121,12 @@ const SignupPage = () => {
               className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
               disabled={formik.isSubmitting}
             >
-              {formik.isSubmitting ? "Processing" : "Signup"}
+              {formik.isSubmitting ? "עוד רגע ואתם נכנסים" : "הרשמה"}
             </button>
           </div>
         </form>
 
-      <Link href="../barbers/login">Visit login page</Link>
+      <Link href="../barbers/login">יש לכם כבר משתמש? הכנס עכשיו</Link>
     </div>
   );
 };

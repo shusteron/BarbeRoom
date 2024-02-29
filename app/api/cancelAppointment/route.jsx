@@ -23,7 +23,6 @@ export async function GET(request)
       const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
       const clientId = decodedToken.email;
 
-      // Get the current date and time
       const currentDateTime = new Date();
 
       // Find the appointments that are scheduled for the future for this client
@@ -31,22 +30,20 @@ export async function GET(request)
 
       console.log('Appointments:', appointments);
 
-      // Sending a successful response with the list of appointments
+      // Sending a successful response with the list of appointments to the client
       return NextResponse.json(appointments);
     } 
       
     catch (error) 
     {
       console.log("Failed to fetch appointments from DB due to: " + error);
-
-      // Sending an error response
       return NextResponse.json({ error: 'Internal Server Error' });
     }
   } 
     
   else 
   {
-    // Handling other HTTP methods which are not relatable  
+    console.log("Not a GET request");
     return NextResponse.json({ error: 'Method Not Allowed' });
   }
 }
@@ -66,29 +63,24 @@ export async function DELETE(request)
     {
       // Parsing the request body
       const requestBody = await request.json();
-
-      // Extracting the appointmentId from the request body
       const { appointmentId } = requestBody;
 
       // Deleting the appointment from the database using the appointmentId
       await Appointment.findByIdAndDelete(appointmentId);
 
-      // Sending a successful response
       return NextResponse.json({ message: 'Appointment canceled successfully' });
     } 
     
     catch (error) 
     {
       console.log("Failed to cancel appointment due to: " + error);
-
-      // Sending an error response if the appointment could not be canceled
       return NextResponse.json({ error: 'Internal Server Error' });
     }
   } 
     
   else 
   {
-    // Handling other HTTP methods which are not relatable
+    console.log("Not a DELETE request");
     return NextResponse.json({ error: 'Method Not Allowed' });
   }
 }

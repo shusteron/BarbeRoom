@@ -45,46 +45,14 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
           // Setting the hours state
           setHours(eveningHours);
         }
+      }
 
-        // Getting the current date and time
-        const currentTime = new Date();
-        const currentYear = currentTime.getFullYear();
-        const currentMonth = currentTime.getMonth();
-        const currentDay = currentTime.getDate();
-
-        // The selected day converted to a Date object
-        const convertSelectedDay = new Date(selectedDay);
-
-        // If the selected day is the current day, then we need to filter the hours according to the current time
-        if(currentYear === convertSelectedDay.getFullYear() && currentMonth === convertSelectedDay.getMonth() && currentDay === convertSelectedDay.getDate())
-        { 
-          // Getting the current hour and minute
-          const currentHour = currentTime.getHours();
-          const currentMinute = currentTime.getMinutes();
-
-          // Filtering the hours according to the current time
-          const filteredHours = hours.filter(hour => {
-
-            // Splitting the hour into hour and minute
-            const [hoursLeftOptions, minutesLeftOptions] = hour.split(':').map(Number);
-
-            // The remaining hours that greater than the current time displayed
-            return hoursLeftOptions > currentHour || (hoursLeftOptions === currentHour && minutesLeftOptions > currentMinute);
-          });
-          
-          // Setting the hours state to the filtered hours
-          setHours(filteredHours);
-          }
-        }
-
-        // If there is an error, then display an error message
-        catch (error) 
-        { 
-          console.error("Could not display barber's hours", error);
-
-          // Displaying an error message to the user
-          toast.error("שגיאה בהצגת שעות העבודה");
-        }
+      catch (error) 
+      { 
+        // Display an error toast to the user
+        console.error("Could not display barber's hours", error);
+        toast.error("שגיאה בהצגת שעות העבודה");
+      }
 
     }, [barberId, selectedDay]); // the useEffect hook will re-run whenever the barberEmail or selectedDay changes
 
@@ -96,7 +64,26 @@ const HourSelector = ({ barberId, selectedDay, selectedShiftType, onSelectHour }
           <div className="center">
           <select id="hourSelector" name="hourSelector" onChange={(event) => handleHourChoose(event.target.value)}>
             <option value="">בחר\י שעה</option>
-            {hours.map(hour => (
+            {hours.filter(hour => {
+                const currentTime = new Date();
+                const currentYear = currentTime.getFullYear();
+                const currentMonth = currentTime.getMonth();
+                const currentDay = currentTime.getDate();
+
+                const convertSelectedDay = new Date(selectedDay);
+
+                // If the selected day is the current day, then we need to filter the hours according to the current time
+                if(currentYear === convertSelectedDay.getFullYear() && currentMonth === convertSelectedDay.getMonth() && currentDay === convertSelectedDay.getDate())
+                { 
+                  const [hourStr, minuteStr] = hour.split(':');
+                  const hourInt = parseInt(hourStr);
+                  const minuteInt = parseInt(minuteStr);
+                
+                  return currentTime.getHours() < hourInt || (currentTime.getHours() === hourInt && currentTime.getMinutes() < minuteInt);
+                }
+
+                return true;
+              }).map(hour => (
             <option key={hour} value={hour} >{hour}</option>
           ))}
           </select>

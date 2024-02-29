@@ -16,20 +16,16 @@ export async function GET(request)
     { 
       try  
       {
-        // Finding all barbers from the database
         const barbers = await Barbers.find({});
-
         console.log('Barbers:', barbers);
 
-        // Sending a successful response with the list of barbers
+        // Sending a successful response with the list of barbers to the client
         return NextResponse.json(barbers);
       } 
        
       catch (error) 
       {
         console.log("Failed to fetch barbers from DB due to: " + error);
-
-        // Sending an error response
         return NextResponse.json({ error: 'Internal Server Error' });
       }
     } 
@@ -37,8 +33,6 @@ export async function GET(request)
     else 
     {
       console.log("Not a GET request");
-
-      // Handling other HTTP methods which are not relatable  
       return NextResponse.json({ error: 'Method Not Allowed' });
     }
   } 
@@ -70,12 +64,10 @@ export async function POST(request)
 
         if (appointmentExists) 
         { 
-          // Sending an error response if the appointment already exists in the database
           console.log('Appointment already exists in the database');
           return NextResponse.json({ error: 'Appointment already exists in the database' }, { status: 400 });
         }
 
-        // Create a new Appointment object
         const newAppointment = new Appointment(
         {
           clientId,
@@ -88,14 +80,12 @@ export async function POST(request)
         // Save the new appointment to the database
         const savedAppointment = await newAppointment.save();
 
-        // Sending a successful response with the saved appointment
         console.log('Appointment created:', savedAppointment);
         return NextResponse.json(savedAppointment, { status: 201 });
       } 
        
       catch (error) 
       {
-        // sending an error response if the appointment could not be saved to the database
         console.log("Failed to save appointement to DB due to: " + error);
         return NextResponse.json({ error: 'Internal Server Error' });
       }
@@ -103,7 +93,7 @@ export async function POST(request)
     
     else 
     {
-      // Handling other HTTP methods which are not relatable
+      console.log("Not a POST request");
       return NextResponse.json({ error: 'Method Not Allowed' });
     }
 }
@@ -112,7 +102,6 @@ export async function POST(request)
 // Function to check if the appointment already exists in the database
 async function appointmentExistsInDatabase(barberId, appointmentDate, appointmentHour) 
 {
-  // Find the appointment in the database
   const existingAppointment = await Appointment.findOne(
     {
       barberId,

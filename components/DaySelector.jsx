@@ -30,7 +30,6 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
  
       console.log("getting shifts");
 
-      // Fetching the list of days from the server for the selected barber
       try 
       {
         fetch(`/api/workSchedule?barberId=${barberId}`) // fetch the barber's shifts by passing the barber's id as a query parameter
@@ -41,13 +40,14 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     
       catch (error) 
       { 
-        console.error("Could not fetch barber's shifts", error);
-
         // Displaying an error toast to the user
+        console.error("Could not fetch barber's shifts", error);
         toast.error("שגיאה בהצגת ימי העבודה");
       }
         
     }, [barberId]); // the useEffect hook will re-run whenever the barberEmail changes
+
+    console.log("days:", days);
 
     return (
         <div>
@@ -61,8 +61,16 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
               <option value="">בחר\י יום</option>
               {days.filter(day => {
                     const shiftDate = new Date(day.shiftDay);
+                    const shiftDay = shiftDate.getDay();
+                    const shiftMonth = shiftDate.getMonth();
+                    const shiftYear = shiftDate.getFullYear();
+
                     const currentDate = new Date();
-                    return shiftDate >= currentDate;
+                    const currentDay = currentDate.getDay();
+                    const currentMonth = currentDate.getMonth();
+                    const currentYear = currentDate.getFullYear();
+
+                    return (shiftDay === currentDay && shiftMonth === currentMonth && shiftYear === currentYear) || (shiftDate > currentDate);
                   }).map(day => (
                 <option key={day._id} value={day.shiftDay}>{new Date(day.shiftDay).toLocaleDateString(
                   "he-IL",
@@ -70,6 +78,7 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
                     year: "numeric",
                     month: "numeric",
                     day: "numeric",
+                    timeZone: "UTC"
                   }
                 )} {day.morningShift ? "משמרת בוקר" : "משמרת ערב"}</option>
               ))}

@@ -61,7 +61,15 @@ const HistoryPage = () => {
               {appointments.map((appointment) => (
                 <tr key={appointment._id} >
                   <td>{appointment.barberId.split('@')[0]}</td>
-                  <td>{new Date(appointment.appointmentDate).toDateString()}</td>
+                  <td>{new Date(appointment.appointmentDate).toLocaleDateString(
+              "he-IL",
+              {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+                timeZone: "UTC"
+              }
+            )}</td>
                   <td>{appointment.appointmentHour}</td>
                   <td>{appointment.appointmentHaircutType}</td>
                 </tr>

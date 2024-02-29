@@ -55,7 +55,15 @@ const WorkSchedulePage = () => {
         {shifts.map((shift) => (
           <tr key={shift._id}>
             <td>{shift.barberMail.split('@')[0]}</td>
-            <td>{new Date(shift.shiftDay).toDateString()}</td>
+            <td>{new Date(shift.shiftDay).toLocaleDateString(
+                  "he-IL",
+                  {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                    timeZone: "UTC"
+                  }
+                )}</td>
             <td>{shift.morningShift ? 'כן' : 'לא'}</td>
             <td>{shift.eveningShift ? 'כן' : 'לא'}</td>
           </tr>

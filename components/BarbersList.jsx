@@ -18,7 +18,6 @@ const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
     // Resetting selection of the day, hour and haircut type when a new barber is chosen
     resetSelection();
-
     console.log("handleBarberChoose was called with email: " + barberId);
 
     // Calling the onSelectBarber function with the selected barber's id
@@ -30,7 +29,6 @@ const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
     console.log("getting barbers");
 
-    // Fetching the list of barbers from the server
     try 
     {
       fetch("/api/makeAppointment")
@@ -40,15 +38,14 @@ const BarbersList = ({ onSelectBarber, resetSelection }) => {
 
     catch (error) 
     {
-      console.error("Could not fetch list of barbers", error);
-
       // Displaying an error toast to the user
+      console.error("Could not fetch list of barbers", error);
       toast.error("שגיאה בהצגת רשימת הספרים");
     }
 
   }, []); // the useEffect hook will run only once when the component is mounted
 
-  // If the list of barbers is still being fetched or no barbers are available
+
   if (barbers.length === 0)
   {
     // Display a message to the user

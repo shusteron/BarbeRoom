@@ -20,7 +20,7 @@ const RegisterShiftPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      shiftDay: null,
+      shiftDay: null, 
     },
     validationSchema: Yup.object({
       shiftDay: Yup.date().required('שדה חובה'),
@@ -30,10 +30,13 @@ const RegisterShiftPage = () => {
         // Get the token from wherever it is stored
         const token = Cookies.get('token');
 
+        // Convert the selected date to UTC
+        const selectedDateUTC = new Date( values.shiftDay.getTime() - values.shiftDay.getTimezoneOffset() * 60000 );
+
         // Use token and formattedShiftDay for shift registration
         const response = await axios.post('/api/shiftOrganizer', {
           token,
-          shiftDay: values.shiftDay.toISOString(),
+          shiftDay: selectedDateUTC.toISOString(),
           morningShift: selectedShift === 'morning',
           eveningShift: selectedShift === 'evening',
         });

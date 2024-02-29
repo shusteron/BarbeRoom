@@ -15,7 +15,7 @@ import { toast } from "react-hot-toast";
 
 const MakeAppointmentsPage = () => {
 
-  // useStates to store the selected barber, day, hour and haircut type
+  // useStates to store the selected barber, day, shiftType, hour and haircut type
   const [selectedBarber, setSelectedBarber] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedShiftType, setSelectedShiftType] = useState(null);
@@ -44,7 +44,6 @@ const MakeAppointmentsPage = () => {
       // Get the token from the cookies
       const token = Cookies.get("token");
       
-      // create an appointment object with the selected data
       const appointmentData = 
       {
         token, 
@@ -54,18 +53,17 @@ const MakeAppointmentsPage = () => {
         appointmentHaircutType: selectedHaircutType
       };
 
-      // send the appointment to the server
+      // send the appointment to the server and get his data back
       const appointmentDataFromServer = await axios.post("/../api/makeAppointment", appointmentData);
-
       console.log(appointmentDataFromServer.data);
       
-      // Display a success message to the user if the appointment was created successfully
+      // Display a success message to the user
       toast.success("התור נקבע בהצלחה");
     }
 
     catch
     {
-      // Display an error message if the appointment creation failed
+      // Display an error toast to the user
       console.log("Error in creating appointment");
       toast.error("שגיאה בקביעת התור - התור הנוכחי תפוס, נא לבחור שעה אחרת");
     }

@@ -16,7 +16,6 @@ const CancelAppointmentsPage = () => {
   // Function to fetch appointments from the server
   const fetchAppointments = async () => {
 
-    // Fetch the list of appointments from the server
     try 
     { 
       // Get the token from the cookies
@@ -28,15 +27,13 @@ const CancelAppointmentsPage = () => {
       // Sort the appointments by date in ascending order
       const sortedAppointments = response.data.sort((first, second) => new Date(first.appointmentDate) - new Date(second.appointmentDate));
 
-      // Set the list of appointments in the state variable
       setAppointments(sortedAppointments);
     } 
     
     catch (error) 
     {
-      console.error("Error fetching appointments:", error);
-
       // Display an error toast to the user
+      console.error("Error fetching appointments:", error);
       toast.error("שגיאה בהצגת רשימת התורים");
     }
   };
@@ -45,15 +42,13 @@ const CancelAppointmentsPage = () => {
   // UseEffect hook to fetch the list of appointments
   useEffect(() => {
 
-    // call the fetchAppointments function
     fetchAppointments();
 
   }, []);
 
   // Function to cancel an appointment
   const cancelAppointment = async (appointmentId) => {
-
-  // Send a DELETE request to the server to cancel the appointment  
+  
   try 
   { 
     // Get the token from the cookies
@@ -71,9 +66,8 @@ const CancelAppointmentsPage = () => {
   
   catch (error) 
   { 
-    console.error("Error canceling appointment:", error);
-
     // Display an error toast to the user
+    console.error("Error canceling appointment:", error);
     toast.error("שגיאה בביטול התור, אנא נסה שוב");
   }
   
@@ -94,6 +88,7 @@ return (
                 year: "numeric",
                 month: "numeric",
                 day: "numeric",
+                timeZone: "UTC"
               }
             )} - {appointment.appointmentHour} - {appointment.barberId.split('@')[0]} - {appointment.appointmentHaircutType}</div>
                 <button className="center white-text cancel-button" onClick={() => cancelAppointment(appointment._id)}>בטל תור</button>

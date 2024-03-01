@@ -141,7 +141,7 @@ const SignupPage = () => {
             </div>
           </form>
   
-        <Link href="../clients/login">יש לכם כבר משתמש, הכנס עכשיו</Link>
+        <Link href="../clients/login">יש לכם כבר משתמש? הכנסו עכשיו</Link>
       </div>
     );
   };

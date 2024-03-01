@@ -75,7 +75,7 @@ export default function LoginPage() {
             onClick={onLogin}
             disabled={buttonDisabled}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">התחבר/י</button>
-            <Link href="../barbers/signUp" >הצטרף עכשיו לצוות הספרים</Link>
+            <Link href="../barbers/signUp" >הצטרפו עכשיו לצוות הספרים</Link>
         </div>
     )
 

@@ -43,7 +43,7 @@ const CancelAppointmentsPage = () => {
   useEffect(() => {
 
     fetchAppointments();
-
+ 
   }, []);
 
   // Function to cancel an appointment

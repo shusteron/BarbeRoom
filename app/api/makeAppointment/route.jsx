@@ -26,14 +26,14 @@ export async function GET(request)
       catch (error) 
       {
         console.log("Failed to fetch barbers from DB due to: " + error);
-        return NextResponse.json({ error: 'Internal Server Error' });
+        return NextResponse.json({ error: 'Internal Server Error in makeAppointment(GET)' });
       }
     } 
     
     else 
     {
       console.log("Not a GET request");
-      return NextResponse.json({ error: 'Method Not Allowed' });
+      return NextResponse.json({ error: 'Method Not Allowed - makeAppointment(GET)' });
     }
   } 
 
@@ -87,14 +87,14 @@ export async function POST(request)
       catch (error) 
       {
         console.log("Failed to save appointement to DB due to: " + error);
-        return NextResponse.json({ error: 'Internal Server Error' });
+        return NextResponse.json({ error: 'Internal Server Error in makeAppointment(GET)' });
       }
     } 
     
     else 
     {
       console.log("Not a POST request");
-      return NextResponse.json({ error: 'Method Not Allowed' });
+      return NextResponse.json({ error: 'Method Not Allowed - makeAppointment(POST)' });
     }
 }
 

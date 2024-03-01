@@ -126,7 +126,7 @@ const SignupPage = () => {
           </div>
         </form>
 
-      <Link href="../barbers/login">יש לכם כבר משתמש? הכנס עכשיו</Link>
+      <Link href="../barbers/login">יש לכם כבר משתמש? הכנסו עכשיו</Link>
     </div>
   );
 };

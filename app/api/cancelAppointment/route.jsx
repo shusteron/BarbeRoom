@@ -37,14 +37,14 @@ export async function GET(request)
     catch (error) 
     {
       console.log("Failed to fetch appointments from DB due to: " + error);
-      return NextResponse.json({ error: 'Internal Server Error' });
+      return NextResponse.json({ error: 'Internal Server Error in cancelAppointment' });
     }
   } 
     
   else 
   {
-    console.log("Not a GET request");
-    return NextResponse.json({ error: 'Method Not Allowed' });
+    console.log("Not a GET request - cancelAppointment");
+    return NextResponse.json({ error: 'Method Not Allowed - cancelAppointment' });
   }
 }
 

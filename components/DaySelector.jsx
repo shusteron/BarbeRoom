@@ -3,6 +3,8 @@
 
 import { useState, useEffect } from "react"; 
 import { toast } from "react-hot-toast";
+import  Cookies  from "js-cookie" ;
+import axios from "axios"; 
 import "../styles/globals.css"
 
 
@@ -27,15 +29,24 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
     
     // useEffect hook to fetch the list of days from the server
     useEffect(() => {
+
+      async function fetchDays() {
  
       console.log("getting shifts");
-
+ 
       try 
       {
-        fetch(`/api/workSchedule?barberId=${barberId}`) // fetch the barber's shifts by passing the barber's id as a query parameter
-        .then( (response) => response.json() )
-        .then( (data) => data.sort((first, second) => new Date(first.shiftDay) - new Date(second.shiftDay)) )
-        .then( (sortedDays) => setDays(sortedDays)); 
+        // fetch(`/api/workSchedule?barberId=${barberId}`) // fetch the barber's shifts by passing the barber's id as a query parameter
+        // .then( (response) => response.json() )
+        // .then( (data) => data.sort((first, second) => new Date(first.shiftDay) - new Date(second.shiftDay)) )
+        // .then( (sortedDays) => setDays(sortedDays)); 
+
+        
+        const response = await axios.post("/api/workSchedule", { barberId });   
+
+        // Sorting the days by date in ascending order
+        const sortedDays = response.data.sort((first, second) => new Date(first.shiftDay) - new Date(second.shiftDay));
+        setDays(sortedDays);     
       } 
     
       catch (error) 
@@ -44,10 +55,12 @@ const DaySelector = ({ barberId, onSelectDay, onSelectShiftType }) => {
         console.error("Could not fetch barber's shifts", error);
         toast.error("שגיאה בהצגת ימי העבודה");
       }
+    }
+
+    // Call the fetchDays function
+    fetchDays();
         
     }, [barberId]); // the useEffect hook will re-run whenever the barberEmail changes
-
-    console.log("days:", days);
 
     return (
         <div>

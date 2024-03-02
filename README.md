@@ -1,6 +1,7 @@
 
 # BarbeRoom
 
+![App Screenshot](https://i.imagesup.co/images2/491fe817b2924244b05524afcfd9e69843b6b8ff.png)
 
 
 ### Our platform serves two main user profiles: barbers and clients. Below is a brief overview of the features available to each user type:

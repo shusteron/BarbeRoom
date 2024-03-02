@@ -18,6 +18,7 @@ export default function Home() {
     "/images/sliders/pic3.jpg",
     "/images/sliders/pic4.jpg",
     "/images/sliders/pic5.jpg",
+    
 
   ];
 

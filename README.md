@@ -46,7 +46,7 @@ Barbers have access to a comprehensive overview of the work schedules of all bar
 
 [Analysis Document](https://github.com/shusteron/BarbeRoom/blob/main/Documents/Analysis.pdf)
 
-[Final Presentation](https://github.com/shusteron/BarbeRoom/blob/main/Documents/Analysis.pdf)
+[Final Presentation](https://github.com/shusteron/BarbeRoom/blob/main/Documents/Final%20Presentation.pptx)
 
 #############################################################
 
